@@ -1,0 +1,1096 @@
+Notebook[{
+Cell[BoxData[{
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"StringJoin", "[", 
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<\>\""}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Off", "[", 
+  RowBox[{"Read", "::", "readn"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Off", "[", 
+  StyleBox[
+   RowBox[{"InterpolatingFunction", "::", "dmval"}], "MessageName"], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"<<", "NDSolve`FEM`"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "set", " ", "up", " ", "some", " ", "usefull", " ", "functions", " ", "to",
+     " ", "parse", " ", "the", " ", "log", " ", "files"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"GetNumber", "[", "str_", "]"}], ":=", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"num", "=", 
+      RowBox[{"Read", "[", 
+       RowBox[{
+        RowBox[{"StringToStream", "[", "str", "]"}], ",", "Number"}], "]"}]}],
+      "}"}], ",", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"num", "===", "$Failed"}], ",", "str", ",", "num"}], "]"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"StringCompareQ", "[", 
+    RowBox[{"str1_", ",", "str2_"}], "]"}], ":=", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"SameQ", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Characters", "[", "str2", "]"}], "\[LeftDoubleBracket]", "1",
+         "\[RightDoubleBracket]"}], ",", "\"\<\\\\\>\""}], "]"}], ",", 
+     RowBox[{"StringContainsQ", "[", 
+      RowBox[{"str1", ",", 
+       RowBox[{"StringJoin", "[", 
+        RowBox[{
+         RowBox[{"Characters", "[", "str2", "]"}], "\[LeftDoubleBracket]", 
+         RowBox[{"2", ";;"}], "\[RightDoubleBracket]"}], "]"}]}], "]"}], ",", 
+     RowBox[{"SameQ", "[", 
+      RowBox[{"str1", ",", "str2"}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"GetData", "[", 
+   RowBox[{"list_", ",", "str_"}], "]"}], ":=", 
+  RowBox[{"Map", "[", 
+   RowBox[{"GetNumber", ",", 
+    RowBox[{"Map", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Extract", "[", 
+        RowBox[{"list", ",", 
+         RowBox[{"#", "+", 
+          RowBox[{"UnitVector", "[", 
+           RowBox[{
+            RowBox[{"Length", "[", "#", "]"}], ",", 
+            RowBox[{"Length", "[", "#", "]"}]}], "]"}]}]}], "]"}], "&"}], ",", 
+      RowBox[{"Position", "[", 
+       RowBox[{"list", ",", "str"}], "]"}]}], "]"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GetPairs", "[", 
+    RowBox[{"list_", ",", "str1_", ",", "str2_"}], "]"}], ":=", 
+   RowBox[{"Apply", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "[", "#", "]"}], "\[Equal]", "0"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{"\[ImaginaryI]", ",", "\[ImaginaryI]"}], "}"}], "}"}], ",", 
+        "#"}], "]"}], "&"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Sort", "[", 
+       RowBox[{"DeleteDuplicates", "[", 
+        RowBox[{"Thread", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"GetData", "[", 
+            RowBox[{"list", ",", "str1"}], "]"}], ",", 
+           RowBox[{"GetData", "[", 
+            RowBox[{"list", ",", "str2"}], "]"}]}], "}"}], "]"}], "]"}], 
+       "]"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SelectDataSets", "[", 
+    RowBox[{"list_", ",", "str_", ",", "val_"}], "]"}], ":=", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"StringQ", "[", "val", "]"}], ",", 
+     RowBox[{"Select", "[", 
+      RowBox[{"list", ",", 
+       RowBox[{
+        RowBox[{"StringCompareQ", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"GetData", "[", 
+            RowBox[{"#", ",", "str"}], "]"}], "\[LeftDoubleBracket]", "1", 
+           "\[RightDoubleBracket]"}], ",", "val"}], "]"}], "&"}]}], "]"}], 
+     ",", 
+     RowBox[{"Select", "[", 
+      RowBox[{"list", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"GetData", "[", 
+           RowBox[{"#", ",", "str"}], "]"}], "\[LeftDoubleBracket]", "1", 
+          "\[RightDoubleBracket]"}], "\[Equal]", "val"}], "&"}]}], "]"}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SelectData", "[", 
+   RowBox[{"list_", ",", "rule_"}], "]"}], ":=", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"sublist", "=", "list"}], "}"}], ",", 
+    RowBox[{
+     RowBox[{"Do", "[", 
+      RowBox[{
+       RowBox[{"sublist", "=", 
+        RowBox[{"SelectDataSets", "[", 
+         RowBox[{"sublist", ",", 
+          RowBox[{"rule", "\[LeftDoubleBracket]", 
+           RowBox[{"i", ",", "1"}], "\[RightDoubleBracket]"}], ",", 
+          RowBox[{"rule", "\[LeftDoubleBracket]", 
+           RowBox[{"i", ",", "2"}], "\[RightDoubleBracket]"}]}], "]"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", 
+         RowBox[{"Length", "[", "rule", "]"}]}], "}"}]}], "]"}], ";", 
+     "sublist"}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ReadData", "[", "filename_", "]"}], ":=", 
+    RowBox[{"Map", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ReadList", "[", 
+        RowBox[{
+         RowBox[{"StringToStream", "[", "#", "]"}], ",", "Word", ",", 
+         RowBox[{"WordSeparators", "->", 
+          RowBox[{"{", 
+           RowBox[{"\"\<, \>\"", ",", "\"\<: \>\"", ",", "\"\< = \>\""}], 
+           "}"}]}]}], "]"}], "&"}], ",", 
+      RowBox[{"ReadList", "[", 
+       RowBox[{
+        RowBox[{"StringToStream", "[", 
+         RowBox[{"StringJoin", "[", 
+          RowBox[{"Riffle", "[", 
+           RowBox[{
+            RowBox[{"ReadList", "[", 
+             RowBox[{"filename", ",", "String"}], "]"}], ",", "\"\<, \>\""}], 
+           "]"}], "]"}], "]"}], ",", "Word", ",", 
+        RowBox[{"WordSeparators", "\[Rule]", 
+         RowBox[{"{", "\"\<************\>\"", "}"}]}]}], "]"}]}], "]"}]}], 
+   ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "list", " ", "all", " ", "available", " ", "results", " ", "from", " ", 
+    "a", " ", "logfile"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Data", "=", 
+    RowBox[{
+    "ReadData", "[", "\"\<../output/LogComplexChannel.txt\>\"", "]"}]}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"QuickInfo", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<Case\>\"", ",", "\"\<TimeStamp\>\"", ",", "\"\<nEqn\>\"", ",", 
+     "\"\<MeshFile\>\"", ",", "\"\<RunTime\>\"", ",", "\"\<tau\>\""}], 
+    "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"TableForm", "[", 
+  RowBox[{"Join", "[", 
+   RowBox[{
+    RowBox[{"{", "QuickInfo", "}"}], ",", 
+    RowBox[{"Transpose", "[", 
+     RowBox[{"Join", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"Range", "[", 
+         RowBox[{"1", ",", 
+          RowBox[{"Length", "[", "Data", "]"}]}], "]"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Data", "\[LeftDoubleBracket]", 
+         RowBox[{"All", ",", "1"}], "\[RightDoubleBracket]"}], "}"}], ",", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"GetData", "[", 
+           RowBox[{"Data", ",", "#"}], "]"}], "&"}], ",", 
+         RowBox[{"QuickInfo", "\[LeftDoubleBracket]", 
+          RowBox[{"3", ";;"}], "\[RightDoubleBracket]"}]}], "]"}]}], "]"}], 
+     "]"}]}], "]"}], "]"}], "\[IndentingNewLine]"}], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"select", " ", "a", " ", "case", " ", "and", " ", "load", " ", 
+    RowBox[{"result", "/", "mesh"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"nrCase", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Case", "=", 
+     RowBox[{
+     "Data", "\[LeftDoubleBracket]", "nrCase", "\[RightDoubleBracket]"}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"Transpose", "[", 
+      RowBox[{"ArrayReshape", "[", 
+       RowBox[{
+        RowBox[{"Join", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"\"\<Case\>\"", ",", "nrCase"}], "}"}], ",", 
+          RowBox[{"Case", "\[LeftDoubleBracket]", 
+           RowBox[{"2", ";;"}], "\[RightDoubleBracket]"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Length", "[", "Case", "]"}], "+", "1"}], ")"}], "/", 
+           "2"}], ",", "2"}], "}"}]}], "]"}], "]"}], ",", 
+     RowBox[{"ItemSize", "\[Rule]", "6"}], ",", 
+     RowBox[{"Frame", "\[Rule]", "All"}]}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"A0", "=", 
+     RowBox[{"ReadList", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{
+         RowBox[{"Characters", "[", 
+          RowBox[{
+           RowBox[{"GetData", "[", 
+            RowBox[{"Case", ",", "\"\<MeshFile\>\""}], "]"}], 
+           "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], "]"}], 
+         "\[LeftDoubleBracket]", 
+         RowBox[{"2", ";;", 
+          RowBox[{"-", "2"}]}], "\[RightDoubleBracket]"}], "]"}], ",", 
+       "Record", ",", 
+       RowBox[{"RecordLists", "\[Rule]", "True"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"offset", "=", "5"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"nVerts", "=", 
+     RowBox[{"ToExpression", "[", 
+      RowBox[{"A0", "\[LeftDoubleBracket]", 
+       RowBox[{"offset", ",", "1"}], "\[RightDoubleBracket]"}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Verts", "=", 
+     RowBox[{
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"ReadList", "[", 
+         RowBox[{
+          RowBox[{"StringToStream", "[", 
+           RowBox[{"A0", "\[LeftDoubleBracket]", 
+            RowBox[{"n", ",", "1"}], "\[RightDoubleBracket]"}], "]"}], ",", 
+          "Number"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"n", ",", 
+          RowBox[{"offset", "+", "1"}], ",", 
+          RowBox[{"offset", "+", "nVerts"}]}], "}"}]}], "]"}], 
+      "\[LeftDoubleBracket]", 
+      RowBox[{"All", ",", 
+       RowBox[{"{", 
+        RowBox[{"2", ",", "3"}], "}"}]}], "\[RightDoubleBracket]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"offset", "=", 
+     RowBox[{"nVerts", "+", "8"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"nElems", "=", 
+     RowBox[{"ToExpression", "[", 
+      RowBox[{"A0", "\[LeftDoubleBracket]", 
+       RowBox[{"offset", ",", "1"}], "\[RightDoubleBracket]"}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ElemsRaw", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"ReadList", "[", 
+        RowBox[{
+         RowBox[{"StringToStream", "[", 
+          RowBox[{"A0", "\[LeftDoubleBracket]", 
+           RowBox[{"n", ",", "1"}], "\[RightDoubleBracket]"}], "]"}], ",", 
+         "Number"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", 
+         RowBox[{"offset", "+", "1"}], ",", 
+         RowBox[{"offset", "+", "nElems"}]}], "}"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Triangles", "=", 
+     RowBox[{"Select", "[", 
+      RowBox[{"ElemsRaw", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+         "\[Equal]", "2"}], "&"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Quads", "=", 
+     RowBox[{"Select", "[", 
+      RowBox[{"ElemsRaw", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+         "\[Equal]", "3"}], "&"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Length", "[", "Triangles", "]"}], ">", "0"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Elems", "=", 
+        RowBox[{"Triangles", "\[LeftDoubleBracket]", 
+         RowBox[{"All", ",", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"4", ",", "5", ",", "6"}], "}"}], "+", 
+           RowBox[{"Triangles", "\[LeftDoubleBracket]", 
+            RowBox[{"1", ",", "3"}], "\[RightDoubleBracket]"}]}]}], 
+         "\[RightDoubleBracket]"}]}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"mesh", "=", 
+        RowBox[{"ToElementMesh", "[", 
+         RowBox[{
+          RowBox[{"\"\<Coordinates\>\"", "\[Rule]", "Verts"}], ",", 
+          RowBox[{"\"\<MeshElements\>\"", "\[Rule]", " ", 
+           RowBox[{"{", 
+            RowBox[{"TriangleElement", "[", 
+             RowBox[{"Map", "[", 
+              RowBox[{
+               RowBox[{"#", "&"}], ",", "Elems"}], "]"}], "]"}], "}"}]}]}], 
+         "]"}]}], ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Length", "[", "Quads", "]"}], ">", "0"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Elems", "=", 
+        RowBox[{"Quads", "\[LeftDoubleBracket]", 
+         RowBox[{"All", ",", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"4", ",", "5", ",", "6", ",", "7"}], "}"}], "+", 
+           RowBox[{"Quads", "\[LeftDoubleBracket]", 
+            RowBox[{"1", ",", "3"}], "\[RightDoubleBracket]"}]}]}], 
+         "\[RightDoubleBracket]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"mesh", "=", 
+        RowBox[{"ToElementMesh", "[", 
+         RowBox[{
+          RowBox[{"\"\<Coordinates\>\"", "\[Rule]", "Verts"}], ",", 
+          RowBox[{"\"\<MeshElements\>\"", "\[Rule]", " ", 
+           RowBox[{"{", 
+            RowBox[{"QuadElement", "[", 
+             RowBox[{"Map", "[", 
+              RowBox[{
+               RowBox[{"#", "&"}], ",", "Elems"}], "]"}], "]"}], "}"}]}]}], 
+         "]"}]}], ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"nElems", "=", 
+     RowBox[{"Length", "[", "Elems", "]"}]}], ";"}], " ", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"A", "=", 
+     RowBox[{"ReadList", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{
+         RowBox[{"Characters", "[", 
+          RowBox[{
+           RowBox[{"GetData", "[", 
+            RowBox[{"Case", ",", "\"\<ResultFile\>\""}], "]"}], 
+           "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], "]"}], 
+         "\[LeftDoubleBracket]", 
+         RowBox[{"2", ";;", 
+          RowBox[{"-", "2"}]}], "\[RightDoubleBracket]"}], "]"}], ",", 
+       "Number", ",", 
+       RowBox[{"RecordLists", "\[Rule]", "True"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "this", " ", "generates", " ", "interpolation", " ", "functions", " ", 
+     "for", " ", "the", " ", "fields", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"'", 
+        RowBox[{"stress", "'"}], " ", "represents", " ", "von"}], "-", 
+       "Mises", "-", "stress"}], ")"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"density", "=", 
+     RowBox[{"ElementMeshInterpolation", "[", 
+      RowBox[{
+       RowBox[{"{", "mesh", "}"}], ",", " ", 
+       RowBox[{"A", "\[LeftDoubleBracket]", 
+        RowBox[{"All", ",", "3"}], "\[RightDoubleBracket]"}], ",", 
+       RowBox[{"InterpolationOrder", "\[Rule]", "1"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"vx", "=", 
+     RowBox[{"ElementMeshInterpolation", "[", 
+      RowBox[{
+       RowBox[{"{", "mesh", "}"}], ",", " ", 
+       RowBox[{"A", "\[LeftDoubleBracket]", 
+        RowBox[{"All", ",", "4"}], "\[RightDoubleBracket]"}], ",", 
+       RowBox[{"InterpolationOrder", "\[Rule]", "1"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"vy", "=", 
+     RowBox[{"ElementMeshInterpolation", "[", 
+      RowBox[{
+       RowBox[{"{", "mesh", "}"}], ",", " ", 
+       RowBox[{"A", "\[LeftDoubleBracket]", 
+        RowBox[{"All", ",", "5"}], "\[RightDoubleBracket]"}], ",", 
+       RowBox[{"InterpolationOrder", "\[Rule]", "1"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"theta", "=", 
+     RowBox[{"ElementMeshInterpolation", "[", 
+      RowBox[{
+       RowBox[{"{", "mesh", "}"}], ",", " ", 
+       RowBox[{"A", "\[LeftDoubleBracket]", 
+        RowBox[{"All", ",", "6"}], "\[RightDoubleBracket]"}], ",", 
+       RowBox[{"InterpolationOrder", "\[Rule]", "1"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"stress", "=", 
+     RowBox[{"ElementMeshInterpolation", "[", 
+      RowBox[{
+       RowBox[{"{", "mesh", "}"}], ",", " ", 
+       RowBox[{"A", "\[LeftDoubleBracket]", 
+        RowBox[{"All", ",", "7"}], "\[RightDoubleBracket]"}], ",", 
+       RowBox[{"InterpolationOrder", "\[Rule]", "1"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"qx", "=", 
+     RowBox[{"ElementMeshInterpolation", "[", 
+      RowBox[{
+       RowBox[{"{", "mesh", "}"}], ",", " ", 
+       RowBox[{"A", "\[LeftDoubleBracket]", 
+        RowBox[{"All", ",", "8"}], "\[RightDoubleBracket]"}], ",", 
+       RowBox[{"InterpolationOrder", "\[Rule]", "1"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"qy", "=", 
+     RowBox[{"ElementMeshInterpolation", "[", 
+      RowBox[{
+       RowBox[{"{", "mesh", "}"}], ",", " ", 
+       RowBox[{"A", "\[LeftDoubleBracket]", 
+        RowBox[{"All", ",", "9"}], "\[RightDoubleBracket]"}], ",", 
+       RowBox[{"InterpolationOrder", "\[Rule]", "1"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[Sigma]", "=", 
+     RowBox[{"ElementMeshInterpolation", "[", 
+      RowBox[{
+       RowBox[{"{", "mesh", "}"}], ",", " ", 
+       RowBox[{"A", "\[LeftDoubleBracket]", 
+        RowBox[{"All", ",", "7"}], "\[RightDoubleBracket]"}], ",", 
+       RowBox[{"InterpolationOrder", "\[Rule]", "1"}]}], "]"}]}], 
+    ";"}]}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Show", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"ContourPlot", "[", 
+      RowBox[{
+       RowBox[{"stress", "[", 
+        RowBox[{"x", ",", " ", "y"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"x", ",", "y"}], "}"}], "\[Element]", 
+        RowBox[{"MeshRegion", "[", "mesh", "]"}]}], ",", 
+       RowBox[{"Contours", "\[Rule]", "10"}], ",", 
+       RowBox[{"ContourStyle", "\[Rule]", "Green"}], ",", 
+       RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+     RowBox[{"mesh", "[", 
+      RowBox[{"\"\<Wireframe\>\"", "[", 
+       RowBox[{"\"\<MeshElementStyle\>\"", "\[Rule]", 
+        RowBox[{"EdgeForm", "[", 
+         RowBox[{"{", 
+          RowBox[{"Thin", ",", "Black"}], "}"}], "]"}]}], "]"}], "]"}], 
+     "\[IndentingNewLine]", ",", 
+     RowBox[{"ImageSize", "\[Rule]", "600"}], ",", 
+     RowBox[{
+     "PlotLabel", "\[Rule]", "\"\<Stress Contours with Grid Mesh\>\""}], ",", 
+     RowBox[{"AspectRatio", "\[Rule]", "Automatic"}]}], "]"}], 
+   "\[IndentingNewLine]"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"Show", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"ContourPlot", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"density", "[", 
+       RowBox[{"x", ",", " ", "y"}], "]"}], "+", 
+      RowBox[{"theta", "[", 
+       RowBox[{"x", ",", "y"}], "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"x", ",", "y"}], "}"}], "\[Element]", 
+      RowBox[{"MeshRegion", "[", "mesh", "]"}]}], ",", 
+     RowBox[{"Contours", "\[Rule]", "20"}], ",", 
+     RowBox[{"ContourStyle", "\[Rule]", "Green"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+   RowBox[{"VectorPlot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"vx", "[", 
+        RowBox[{"x", ",", " ", "y"}], "]"}], ",", 
+       RowBox[{"vy", "[", 
+        RowBox[{"x", ",", "y"}], "]"}]}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"x", ",", "y"}], "}"}], "\[Element]", 
+      RowBox[{"MeshRegion", "[", "mesh", "]"}]}], ",", 
+     RowBox[{"VectorPoints", "\[Rule]", "30"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], "\[IndentingNewLine]", 
+   ",", 
+   RowBox[{"ImageSize", "\[Rule]", "600"}], ",", 
+   RowBox[{
+   "PlotLabel", "\[Rule]", 
+    "\"\<Pressure Contours with Velcocity Vectors\>\""}], ",", 
+   RowBox[{"AspectRatio", "\[Rule]", "Automatic"}]}], "]"}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell["Specific for complex.msh", "Subsection"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"PointInside", "[", 
+    RowBox[{"poly_", ",", "pt_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"Round", "[", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Total", "@", 
+         RowBox[{"Mod", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"#", "-", 
+               RowBox[{"RotateRight", "[", "#", "]"}]}], ")"}], "&"}], "@", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"ArcTan", "@@", 
+                RowBox[{"(", 
+                 RowBox[{"pt", "-", "#"}], ")"}]}], "&"}], "/@", "poly"}], 
+             ")"}]}], ",", 
+           RowBox[{"2", " ", "Pi"}], ",", 
+           RowBox[{"-", "Pi"}]}], "]"}]}], "/", "2"}], "/", "Pi"}], ")"}], 
+     "]"}], "\[NotEqual]", "0"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"bcVerts", "=", 
+   RowBox[{
+    RowBox[{"ToBoundaryMesh", "[", "mesh", "]"}], "\[LeftDoubleBracket]", "1",
+     "\[RightDoubleBracket]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"points1", "=", 
+   RowBox[{"Apply", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Join", "[", 
+       RowBox[{
+        RowBox[{"{", "##", "}"}], ",", 
+        RowBox[{"{", "#1", "}"}]}], "]"}], "&"}], ",", 
+     RowBox[{"Select", "[", 
+      RowBox[{"bcVerts", ",", 
+       RowBox[{
+        RowBox[{"PointInside", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "1.5"}], ",", "0.3"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "1.5"}], ",", "0.8"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "0.5"}], ",", "0.8"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "0.5"}], ",", "0.3"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "1.5"}], ",", "0.3"}], "}"}]}], "}"}], ",", "#"}], 
+         "]"}], "&"}]}], "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"points2", "=", 
+   RowBox[{"Apply", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Join", "[", 
+       RowBox[{
+        RowBox[{"{", "##", "}"}], ",", 
+        RowBox[{"{", "#1", "}"}]}], "]"}], "&"}], ",", 
+     RowBox[{"Select", "[", 
+      RowBox[{"bcVerts", ",", 
+       RowBox[{
+        RowBox[{"PointInside", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0.2", ",", 
+              RowBox[{"-", "1.3"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"0.8", ",", 
+              RowBox[{"-", "1.3"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"0.8", ",", 
+              RowBox[{"-", "0.3"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"0.3", ",", 
+              RowBox[{"-", "0.4"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"0.2", ",", 
+              RowBox[{"-", "1.3"}]}], "}"}]}], "}"}], ",", "#"}], "]"}], 
+        "&"}]}], "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"points3", "=", 
+    RowBox[{"Apply", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Join", "[", 
+        RowBox[{
+         RowBox[{"{", "##", "}"}], ",", 
+         RowBox[{"{", "#1", "}"}]}], "]"}], "&"}], ",", 
+      RowBox[{"Select", "[", 
+       RowBox[{"bcVerts", ",", 
+        RowBox[{
+         RowBox[{"PointInside", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "0.5"}], ",", "0."}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "0.1"}], ",", "0.4"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0.5", ",", 
+               RowBox[{"-", "0.1"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0.1", ",", 
+               RowBox[{"-", "0.4"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "0.5"}], ",", "0"}], "}"}]}], "}"}], ",", "#"}], 
+          "]"}], "&"}]}], "]"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vecPts", "=", 
+   RowBox[{"Select", "[", 
+    RowBox[{
+     RowBox[{"Flatten", "[", 
+      RowBox[{
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"x", ",", "y"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{"-", "1.9"}], ",", "0.9", ",", "0.1"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"y", ",", 
+           RowBox[{"-", "1.9"}], ",", "0.9", ",", "0.1"}], "}"}]}], "]"}], 
+       ",", "1"}], "]"}], ",", 
+     RowBox[{"Function", "[", 
+      RowBox[{
+       RowBox[{"{", "pt", "}"}], ",", 
+       RowBox[{
+        RowBox[{"pt", "\[LeftDoubleBracket]", 
+         RowBox[{"1", ";;", "2"}], "\[RightDoubleBracket]"}], "\[Element]", 
+        RowBox[{"MeshRegion", "[", "mesh", "]"}]}]}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]"}], "Input"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"stressMax", "=", "0.7"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"stressMin", "=", "0.0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"ContourPlot", "[", 
+    RowBox[{
+     RowBox[{"stress", "[", 
+      RowBox[{"x", ",", " ", "y"}], "]"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"x", ",", "y"}], "}"}], "\[Element]", 
+      RowBox[{"MeshRegion", "[", "mesh", "]"}]}], ",", 
+     RowBox[{"Contours", "\[Rule]", "10"}], ",", 
+     RowBox[{"ContourStyle", "\[Rule]", "None"}], ",", 
+     RowBox[{"ColorFunctionScaling", "\[Rule]", "False"}], ",", 
+     RowBox[{"ColorFunction", "\[Rule]", 
+      RowBox[{"Function", "[", 
+       RowBox[{
+        RowBox[{"{", "z", "}"}], ",", 
+        RowBox[{
+         RowBox[{"ColorData", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<DeepSeaColors\>\"", ",", "\"\<Reverse\>\""}], "}"}], 
+          "]"}], "[", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"z", "-", "stressMin"}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{"stressMax", "-", "stressMin"}], ")"}]}], "]"}]}], "]"}]}],
+      ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "2"}], ",", "1"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "2"}], ",", "1"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"stressMin", ",", "stressMax"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", "Automatic"}]}], "]"}], ",", 
+   RowBox[{"StreamPlot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"vx", "[", 
+        RowBox[{"x", ",", " ", "y"}], "]"}], ",", 
+       RowBox[{"vy", "[", 
+        RowBox[{"x", ",", " ", "y"}], "]"}]}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"x", ",", "y"}], "}"}], "\[Element]", 
+      RowBox[{"MeshRegion", "[", "mesh", "]"}]}], ",", 
+     RowBox[{"StreamScale", "\[Rule]", "Automatic"}], ",", 
+     RowBox[{"VectorScale", "\[Rule]", "Small"}], ",", 
+     RowBox[{"StreamPoints", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Join", "[", 
+         RowBox[{
+          RowBox[{"{", "}"}], ",", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"x", ",", 
+              RowBox[{"-", "1.98"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "0.05", ",", "0.95", ",", "0.075"}], "}"}]}], 
+           "]"}]}], "]"}], ",", "Automatic", ",", "10"}], "}"}]}], ",", 
+     RowBox[{"StreamStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"{", 
+        RowBox[{"Red", ",", "Thick", ",", "\"\<Arrow\>\""}], "}"}], "}"}]}]}],
+     "]"}], ",", 
+   RowBox[{"Show", "[", 
+    RowBox[{"mesh", "[", 
+     RowBox[{"\"\<Wireframe\>\"", "[", 
+      RowBox[{
+       RowBox[{"\"\<MeshElement\>\"", "\[Rule]", "\"\<BoundaryElements\>\""}],
+        ",", 
+       RowBox[{"\"\<MeshElementStyle\>\"", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Directive", "[", 
+          RowBox[{"{", 
+           RowBox[{"Black", ",", "Thick"}], "}"}], "]"}], "}"}]}]}], "]"}], 
+     "]"}], "]"}], ",", 
+   RowBox[{"ImageSize", "\[Rule]", "600"}], ",", 
+   RowBox[{"Epilog", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"Gray", ",", 
+      RowBox[{"Polygon", "[", "points1", "]"}], ",", 
+      RowBox[{"Polygon", "[", "points2", "]"}], ",", 
+      RowBox[{"Polygon", "[", "points3", "]"}]}], "}"}]}], ",", 
+   RowBox[{"Frame", "\[Rule]", "None"}]}], 
+  "]"}], "\[IndentingNewLine]"}], "Input"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"zVec", "=", 
+     RowBox[{"-", "1.9"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"vecPts3D", "=", 
+     RowBox[{"Select", "[", 
+      RowBox[{
+       RowBox[{"Flatten", "[", 
+        RowBox[{
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"x", ",", "y", ",", "zVec"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", 
+             RowBox[{"-", "1.9"}], ",", "0.9", ",", "0.1"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"y", ",", 
+             RowBox[{"-", "1.9"}], ",", "0.9", ",", "0.1"}], "}"}]}], "]"}], 
+         ",", "1"}], "]"}], ",", 
+       RowBox[{"Function", "[", 
+        RowBox[{
+         RowBox[{"{", "pt", "}"}], ",", 
+         RowBox[{
+          RowBox[{"pt", "\[LeftDoubleBracket]", 
+           RowBox[{"1", ";;", "2"}], "\[RightDoubleBracket]"}], "\[Element]", 
+          RowBox[{"MeshRegion", "[", "mesh", "]"}]}]}], "]"}]}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"zMesh", "=", 
+     RowBox[{"-", "2.2"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fplot", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"density", "[", "##", "]"}], "+", 
+        RowBox[{"theta", "[", "##", "]"}]}], ")"}], "&"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fVerts", "=", 
+     RowBox[{"Map", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"#", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}],
+           ",", 
+          RowBox[{"#", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}],
+           ",", 
+          RowBox[{"fplot", "[", 
+           RowBox[{
+            RowBox[{
+            "#", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], ",", 
+            RowBox[{
+            "#", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+           "]"}]}], "}"}], "&"}], ",", "Verts"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"gVerts", "=", 
+     RowBox[{"Map", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"#", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}],
+           ",", 
+          RowBox[{"#", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}],
+           ",", "zMesh"}], "}"}], "&"}], ",", "Verts"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Framed", "[", 
+    RowBox[{
+     RowBox[{"Show", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Plot3D", "[", 
+        RowBox[{
+         RowBox[{"fplot", "[", 
+          RowBox[{"x", ",", " ", "y"}], "]"}], ",", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"x", ",", "y"}], "}"}], "\[Element]", 
+          RowBox[{"MeshRegion", "[", "mesh", "]"}]}], ",", 
+         RowBox[{"Mesh", "\[Rule]", "None"}], ",", 
+         RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+         RowBox[{"ColorFunction", "\[Rule]", 
+          RowBox[{"Function", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"x", ",", "y", ",", "z"}], "}"}], ",", 
+            RowBox[{
+             RowBox[{"ColorData", "[", "\"\<DeepSeaColors\>\"", "]"}], "[", 
+             "z", "]"}]}], "]"}]}], ",", 
+         RowBox[{"ExclusionsStyle", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"None", ",", "Red"}], "}"}]}]}], "]"}], ",", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"Plot3D", "[", 
+        RowBox[{"zMesh", ",", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"x", ",", "y"}], "}"}], "\[Element]", 
+          RowBox[{"MeshRegion", "[", "mesh", "]"}]}], ",", 
+         RowBox[{"PlotStyle", "\[Rule]", "Black"}], ",", 
+         RowBox[{"Mesh", "\[Rule]", "False"}], ",", 
+         RowBox[{"ExclusionsStyle", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"None", ",", "Red"}], "}"}]}]}], "]"}], ",", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"VectorPlot3D", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"vx", "[", 
+             RowBox[{"x", ",", " ", "y"}], "]"}], ",", 
+            RowBox[{"vy", "[", 
+             RowBox[{"x", ",", " ", "y"}], "]"}], ",", "0"}], "}"}], "}"}], 
+         ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{"-", "2"}], ",", "1"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"y", ",", 
+           RowBox[{"-", "2"}], ",", "1"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"z", ",", 
+           RowBox[{"zVec", "-", "1"}], ",", 
+           RowBox[{"zVec", "+", "1"}]}], "}"}], ",", 
+         RowBox[{"VectorPoints", "\[Rule]", "vecPts3D"}], ",", 
+         RowBox[{"VectorStyle", "\[Rule]", "\"\<Arrow3D\>\""}], ",", 
+         RowBox[{"VectorColorFunction", "\[Rule]", "\"\<Rainbow\>\""}], ",", 
+         RowBox[{"VectorScale", "\[Rule]", "0.05"}]}], "]"}], ",", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"Graphics3D", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"EdgeForm", "[", 
+           RowBox[{"Directive", "[", 
+            RowBox[{"{", 
+             RowBox[{"Thin", ",", "Orange"}], "}"}], "]"}], "]"}], ",", 
+          RowBox[{"FaceForm", "[", "None", "]"}], ",", 
+          RowBox[{"GraphicsComplex", "[", 
+           RowBox[{"fVerts", ",", 
+            RowBox[{
+             RowBox[{"mesh", "[", "\"\<Wireframe\>\"", "]"}], 
+             "\[LeftDoubleBracket]", 
+             RowBox[{"1", ",", "2", ",", "2"}], "\[RightDoubleBracket]"}]}], 
+           "]"}]}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Graphics3D", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"EdgeForm", "[", "None", "]"}], ",", 
+          RowBox[{"FaceForm", "[", "Pink", "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Polygon", "[", 
+           RowBox[{"Partition", "[", 
+            RowBox[{
+             RowBox[{"Flatten", "[", 
+              RowBox[{
+               RowBox[{"Transpose", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"points1", "/.", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"x_", ",", "y_"}], "}"}], "\[Rule]", 
+                    RowBox[{"{", 
+                    RowBox[{"x", ",", "y", ",", "#"}], "}"}]}]}], "&"}], "/@", 
+                 RowBox[{"{", 
+                  RowBox[{"zMesh", ",", 
+                   RowBox[{"fplot", "[", 
+                    RowBox[{"x", ",", "y"}], "]"}]}], "}"}]}], "]"}], ",", 
+               "1"}], "]"}], ",", "3", ",", "1"}], "]"}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Polygon", "[", 
+           RowBox[{"Partition", "[", 
+            RowBox[{
+             RowBox[{"Flatten", "[", 
+              RowBox[{
+               RowBox[{"Transpose", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"points2", "/.", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"x_", ",", "y_"}], "}"}], "\[Rule]", 
+                    RowBox[{"{", 
+                    RowBox[{"x", ",", "y", ",", "#"}], "}"}]}]}], "&"}], "/@", 
+                 RowBox[{"{", 
+                  RowBox[{"zMesh", ",", 
+                   RowBox[{"fplot", "[", 
+                    RowBox[{"x", ",", "y"}], "]"}]}], "}"}]}], "]"}], ",", 
+               "1"}], "]"}], ",", "3", ",", "1"}], "]"}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Polygon", "[", 
+           RowBox[{"Partition", "[", 
+            RowBox[{
+             RowBox[{"Flatten", "[", 
+              RowBox[{
+               RowBox[{"Transpose", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"points3", "/.", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"x_", ",", "y_"}], "}"}], "\[Rule]", 
+                    RowBox[{"{", 
+                    RowBox[{"x", ",", "y", ",", "#"}], "}"}]}]}], "&"}], "/@", 
+                 RowBox[{"{", 
+                  RowBox[{"zMesh", ",", 
+                   RowBox[{"fplot", "[", 
+                    RowBox[{"x", ",", "y"}], "]"}]}], "}"}]}], "]"}], ",", 
+               "1"}], "]"}], ",", "3", ",", "1"}], "]"}], "]"}]}], "}"}], 
+        "]"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ImageSize", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"2000", "/", "2.5"}], ",", 
+          RowBox[{"1400", "/", "2.5"}]}], "}"}]}], ",", 
+       RowBox[{"Axes", "\[Rule]", "True"}], ",", 
+       RowBox[{"AxesEdge", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "1"}], ",", 
+            RowBox[{"-", "1"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"1", ",", 
+            RowBox[{"-", "1"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"1", ",", 
+            RowBox[{"-", "1"}]}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"AxesStyle", "\[Rule]", 
+        RowBox[{"Directive", "[", 
+         RowBox[{"Black", ",", "Thick", ",", "16"}], "]"}]}], ",", 
+       RowBox[{"Boxed", "\[Rule]", "False"}], ",", 
+       RowBox[{"Prolog", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Inset", "[", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            RowBox[{
+            "\"\<Velocity Arrows and Pressure Levels with Mesh Outline\>\"", 
+             ",", 
+             RowBox[{"{", 
+              RowBox[{"Black", ",", "20", ",", "Italic", ",", 
+               RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], 
+              "}"}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"0.3", ",", "0.1"}], "}"}]}], "]"}], "}"}]}], ",", 
+       RowBox[{"ViewAngle", "->", 
+        RowBox[{"Pi", "/", "8"}]}], ",", 
+       RowBox[{"ViewPoint", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "1.5"}], ",", 
+          RowBox[{"-", "1.5"}], ",", "1"}], "}"}]}]}], "\[IndentingNewLine]", 
+      "]"}], ",", 
+     RowBox[{"FrameMargins", "\[Rule]", "0"}]}], "]"}]}]}]], "Input"]
+}, Closed]]
+},
+WindowSize->{1326, 1018},
+WindowMargins->{{Automatic, 186}, {0, Automatic}},
+DockedCells->(FrontEndExecute[{
+   FrontEnd`NotebookApply[
+    FrontEnd`InputNotebook[], #, Placeholder]}]& ),
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+TrackCellChangeTimes->False,
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+

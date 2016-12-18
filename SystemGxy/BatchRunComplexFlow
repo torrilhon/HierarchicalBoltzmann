@@ -1,0 +1,12 @@
+#!/bin/sh
+./SystemGxy.out ../grids/complexH0p04.msh -tau 0.5 -order 2 -mfile ../output/LogComplexFlow.txt -moments -5 -output 1
+./SystemGxy.out ../grids/complexH0p04.msh -tau 0.5 -order 2 -mfile ../output/LogComplexFlow.txt -moments 13 -output 1
+./SystemGxy.out ../grids/complexH0p04.msh -tau 0.5 -order 2 -mfile ../output/LogComplexFlow.txt -moments 20 -output 1
+./SystemGxy.out ../grids/complexH0p04.msh -tau 0.5 -order 2 -mfile ../output/LogComplexFlow.txt -moments -13 -output 1
+./SystemGxy.out ../grids/complexH0p04.msh -tau 0.5 -order 2 -mfile ../output/LogComplexFlow.txt -moments 26 -output 1
+./SystemGxy.out ../grids/complexH0p04.msh -tau 0.5 -order 2 -mfile ../output/LogComplexFlow.txt -moments 35 -output 1
+./SystemGxy.out ../grids/complexH0p04.msh -tau 0.5 -order 2 -mfile ../output/LogComplexFlow.txt -moments 45 -output 1
+./SystemGxy.out ../grids/complexH0p04.msh -tau 0.5 -order 2 -mfile ../output/LogComplexFlow.txt -moments 56 -output 1
+./SystemGxy.out ../grids/complexH0p04.msh -tau 0.5 -order 2 -mfile ../output/LogComplexFlow.txt -moments 84 -output 1
+./SystemGxy.out ../grids/complexH0p04.msh -tau 0.5 -order 2 -mfile ../output/LogComplexFlow.txt -moments 120 -output 1
+

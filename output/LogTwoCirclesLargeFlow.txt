@@ -1,0 +1,456 @@
+ [5-10-2016_20-30-23], RunTime = 0.12
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p4.msh', type = 4, hMax = 0.658378, nElems = 57, nVerts = 76
+Method = DG, order = 1, nBasis = 4, nTot = 2052, nnz = 92822, nnzRatio = 45.23, res = 9.27e-12, nIter = 5
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.005489, theta-L2 = 0.023381, sx-Linf = 0.013799, sx-L2 = 0.035056, ux-Linf = 0.072706, ux-L2 = 0.195116, sigxy-Linf = 0.210485, sigxy-L2 = 0.427898
+************
+ [5-10-2016_20-30-23], RunTime = 0.31
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p2.msh', type = 4, hMax = 0.369073, nElems = 204, nVerts = 238
+Method = DG, order = 1, nBasis = 4, nTot = 7344, nnz = 342802, nnzRatio = 46.68, res = 6.57e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.002668, theta-L2 = 0.009832, sx-Linf = 0.005407, sx-L2 = 0.014604, ux-Linf = 0.021830, ux-L2 = 0.062337, sigxy-Linf = 0.066321, sigxy-L2 = 0.104503
+************
+ [5-10-2016_20-30-25], RunTime = 1.19
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p1.msh', type = 4, hMax = 0.182058, nElems = 897, nVerts = 966
+Method = DG, order = 1, nBasis = 4, nTot = 32292, nnz = 1565770, nnzRatio = 48.49, res = 4.66e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.001000, theta-L2 = 0.002922, sx-Linf = 0.002140, sx-L2 = 0.004710, ux-Linf = 0.005516, ux-L2 = 0.017962, sigxy-Linf = 0.013402, sigxy-L2 = 0.016017
+************
+ [5-10-2016_20-30-30], RunTime = 5.43
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p05.msh', type = 4, hMax = 0.090398, nElems = 3753, nVerts = 3892
+Method = DG, order = 1, nBasis = 4, nTot = 135108, nnz = 6625028, nnzRatio = 49.04, res = 3.28e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000318, theta-L2 = 0.000806, sx-Linf = 0.000792, sx-L2 = 0.001400, ux-Linf = 0.001421, ux-L2 = 0.005146, sigxy-Linf = 0.002859, sigxy-L2 = 0.002794
+************
+ [5-10-2016_20-30-30], RunTime = 0.24
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p4.msh', type = 4, hMax = 0.658378, nElems = 57, nVerts = 76
+Method = DG, order = 2, nBasis = 9, nTot = 4617, nnz = 285427, nnzRatio = 61.82, res = 9.78e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.002662, theta-L2 = 0.010017, sx-Linf = 0.025558, sx-L2 = 0.045849, ux-Linf = 0.033021, ux-L2 = 0.071587, sigxy-Linf = 0.165210, sigxy-L2 = 0.297058
+************
+ [5-10-2016_20-30-31], RunTime = 0.77
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p2.msh', type = 4, hMax = 0.369073, nElems = 204, nVerts = 238
+Method = DG, order = 2, nBasis = 9, nTot = 16524, nnz = 1048882, nnzRatio = 63.48, res = 7.27e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000880, theta-L2 = 0.003564, sx-Linf = 0.010285, sx-L2 = 0.014069, ux-Linf = 0.012143, ux-L2 = 0.021871, sigxy-Linf = 0.070435, sigxy-L2 = 0.096293
+************
+ [5-10-2016_20-30-35], RunTime = 3.63
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p1.msh', type = 4, hMax = 0.182058, nElems = 897, nVerts = 966
+Method = DG, order = 2, nBasis = 9, nTot = 72657, nnz = 4763151, nnzRatio = 65.56, res = 5.51e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000207, theta-L2 = 0.000893, sx-Linf = 0.002840, sx-L2 = 0.003098, ux-Linf = 0.003368, ux-L2 = 0.004917, sigxy-Linf = 0.018251, sigxy-L2 = 0.019139
+************
+ [5-10-2016_20-30-51], RunTime = 16.14
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p05.msh', type = 4, hMax = 0.090398, nElems = 3753, nVerts = 3892
+Method = DG, order = 2, nBasis = 9, nTot = 303993, nnz = 20119015, nnzRatio = 66.18, res = 4.09e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000049, theta-L2 = 0.000219, sx-Linf = 0.000727, sx-L2 = 0.000707, ux-Linf = 0.000893, ux-L2 = 0.001121, sigxy-Linf = 0.004728, sigxy-L2 = 0.004108
+************
+ [5-10-2016_20-30-52], RunTime = 0.12
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p8.msh', type = 3, hMax = 0.991671, nElems = 119, nVerts = 75
+Method = DG, order = 1, nBasis = 3, nTot = 3213, nnz = 144193, nnzRatio = 44.88, res = 8.77e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.008676, theta-L2 = 0.063173, sx-Linf = 0.027086, sx-L2 = 0.115396, ux-Linf = 0.037704, ux-L2 = 0.194713, sigxy-Linf = 0.078087, sigxy-L2 = 0.315954
+************
+ [5-10-2016_20-30-52], RunTime = 0.29
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p4.msh', type = 3, hMax = 0.514267, nElems = 301, nVerts = 174
+Method = DG, order = 1, nBasis = 3, nTot = 8127, nnz = 369742, nnzRatio = 45.50, res = 6.52e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.007680, theta-L2 = 0.032341, sx-Linf = 0.030965, sx-L2 = 0.070603, ux-Linf = 0.017731, ux-L2 = 0.055904, sigxy-Linf = 0.046703, sigxy-L2 = 0.103463
+************
+ [5-10-2016_20-30-52], RunTime = 0.57
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p2.msh', type = 3, hMax = 0.267589, nElems = 783, nVerts = 432
+Method = DG, order = 1, nBasis = 3, nTot = 21141, nnz = 970067, nnzRatio = 45.89, res = 4.51e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.005248, theta-L2 = 0.015080, sx-Linf = 0.022492, sx-L2 = 0.032921, ux-Linf = 0.011776, ux-L2 = 0.028254, sigxy-Linf = 0.042080, sigxy-L2 = 0.048665
+************
+ [5-10-2016_20-30-55], RunTime = 2.60
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p1.msh', type = 3, hMax = 0.144162, nElems = 3170, nVerts = 1665
+Method = DG, order = 1, nBasis = 3, nTot = 85590, nnz = 3956566, nnzRatio = 46.23, res = 3.33e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.001467, theta-L2 = 0.004529, sx-Linf = 0.006480, sx-L2 = 0.009475, ux-Linf = 0.004372, ux-L2 = 0.009784, sigxy-Linf = 0.021291, sigxy-L2 = 0.012125
+************
+ [5-10-2016_20-31-06], RunTime = 10.89
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p05.msh', type = 3, hMax = 0.073279, nElems = 12391, nVerts = 6354
+Method = DG, order = 1, nBasis = 3, nTot = 334557, nnz = 15519787, nnzRatio = 46.39, res = 2.26e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000404, theta-L2 = 0.001238, sx-Linf = 0.001870, sx-L2 = 0.002499, ux-Linf = 0.001213, ux-L2 = 0.002778, sigxy-Linf = 0.006300, sigxy-L2 = 0.003635
+************
+ [5-10-2016_20-31-07], RunTime = 0.32
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p8.msh', type = 3, hMax = 0.991671, nElems = 119, nVerts = 75
+Method = DG, order = 2, nBasis = 6, nTot = 6426, nnz = 391263, nnzRatio = 60.89, res = 9.43e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.005849, theta-L2 = 0.047172, sx-Linf = 0.021763, sx-L2 = 0.065800, ux-Linf = 0.018277, ux-L2 = 0.082705, sigxy-Linf = 0.064854, sigxy-L2 = 0.184497
+************
+ [5-10-2016_20-31-08], RunTime = 0.69
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p4.msh', type = 3, hMax = 0.514267, nElems = 301, nVerts = 174
+Method = DG, order = 2, nBasis = 6, nTot = 16254, nnz = 1001390, nnzRatio = 61.61, res = 7.56e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.005062, theta-L2 = 0.024953, sx-Linf = 0.025653, sx-L2 = 0.051311, ux-Linf = 0.020540, ux-L2 = 0.077361, sigxy-Linf = 0.056047, sigxy-L2 = 0.092165
+************
+ [5-10-2016_20-31-10], RunTime = 1.90
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p2.msh', type = 3, hMax = 0.267589, nElems = 783, nVerts = 432
+Method = DG, order = 2, nBasis = 6, nTot = 42282, nnz = 2629965, nnzRatio = 62.20, res = 5.55e-12, nIter = 5
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.003292, theta-L2 = 0.011552, sx-Linf = 0.017256, sx-L2 = 0.025271, ux-Linf = 0.014433, ux-L2 = 0.043003, sigxy-Linf = 0.044834, sigxy-L2 = 0.041596
+************
+ [5-10-2016_20-31-18], RunTime = 7.82
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p1.msh', type = 3, hMax = 0.144162, nElems = 3170, nVerts = 1665
+Method = DG, order = 2, nBasis = 6, nTot = 171180, nnz = 10721897, nnzRatio = 62.64, res = 3.79e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000850, theta-L2 = 0.003152, sx-Linf = 0.004414, sx-L2 = 0.006363, ux-Linf = 0.004192, ux-L2 = 0.012316, sigxy-Linf = 0.017398, sigxy-L2 = 0.011185
+************
+ [5-10-2016_20-31-55], RunTime = 37.25
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p05.msh', type = 3, hMax = 0.073279, nElems = 12391, nVerts = 6354
+Method = DG, order = 2, nBasis = 6, nTot = 669114, nnz = 42048754, nnzRatio = 62.84, res = 2.75e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000222, theta-L2 = 0.000821, sx-Linf = 0.001179, sx-L2 = 0.001574, ux-Linf = 0.001104, ux-L2 = 0.003243, sigxy-Linf = 0.004578, sigxy-L2 = 0.002703
+************
+ [5-10-2016_20-31-57], RunTime = 0.22
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p4.msh', type = 4, hMax = 0.460843, nElems = 155, nVerts = 178
+Method = DG, order = 1, nBasis = 4, nTot = 5580, nnz = 268120, nnzRatio = 48.05, res = 6.61e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.008920, theta-L2 = 0.024437, sx-Linf = 0.034685, sx-L2 = 0.054878, ux-Linf = 0.017431, ux-L2 = 0.050407, sigxy-Linf = 0.062675, sigxy-L2 = 0.094818
+************
+ [5-10-2016_20-31-57], RunTime = 0.46
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p2.msh', type = 4, hMax = 0.361968, nElems = 369, nVerts = 409
+Method = DG, order = 1, nBasis = 4, nTot = 13284, nnz = 643858, nnzRatio = 48.47, res = 4.72e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.007168, theta-L2 = 0.016908, sx-Linf = 0.025483, sx-L2 = 0.038940, ux-Linf = 0.012997, ux-L2 = 0.027646, sigxy-Linf = 0.048804, sigxy-L2 = 0.049008
+************
+ [5-10-2016_20-31-59], RunTime = 2.04
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p1.msh', type = 4, hMax = 0.185343, nElems = 1498, nVerts = 1577
+Method = DG, order = 1, nBasis = 4, nTot = 53928, nnz = 2644308, nnzRatio = 49.03, res = 3.59e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.001896, theta-L2 = 0.004659, sx-Linf = 0.007503, sx-L2 = 0.009892, ux-Linf = 0.002954, ux-L2 = 0.004504, sigxy-Linf = 0.016691, sigxy-L2 = 0.011631
+************
+ [5-10-2016_20-32-08], RunTime = 8.90
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p05.msh', type = 4, hMax = 0.093973, nElems = 6041, nVerts = 6199
+Method = DG, order = 1, nBasis = 4, nTot = 217476, nnz = 10721082, nnzRatio = 49.30, res = 2.49e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000579, theta-L2 = 0.001273, sx-Linf = 0.002914, sx-L2 = 0.002640, ux-Linf = 0.000915, ux-L2 = 0.001099, sigxy-Linf = 0.010382, sigxy-L2 = 0.003382
+************
+ [5-10-2016_20-32-09], RunTime = 0.56
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p4.msh', type = 4, hMax = 0.460843, nElems = 155, nVerts = 178
+Method = DG, order = 2, nBasis = 9, nTot = 12555, nnz = 816992, nnzRatio = 65.07, res = 7.52e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.006080, theta-L2 = 0.016502, sx-Linf = 0.024703, sx-L2 = 0.038706, ux-Linf = 0.016682, ux-L2 = 0.043237, sigxy-Linf = 0.050346, sigxy-L2 = 0.059310
+************
+ [5-10-2016_20-32-10], RunTime = 1.45
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p2.msh', type = 4, hMax = 0.361968, nElems = 369, nVerts = 409
+Method = DG, order = 2, nBasis = 9, nTot = 29889, nnz = 1959245, nnzRatio = 65.55, res = 5.25e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.004573, theta-L2 = 0.011140, sx-Linf = 0.018273, sx-L2 = 0.025479, ux-Linf = 0.013223, ux-L2 = 0.036361, sigxy-Linf = 0.031466, sigxy-L2 = 0.031196
+************
+ [5-10-2016_20-32-17], RunTime = 6.22
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p1.msh', type = 4, hMax = 0.185343, nElems = 1498, nVerts = 1577
+Method = DG, order = 2, nBasis = 9, nTot = 121338, nnz = 8030809, nnzRatio = 66.19, res = 3.96e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.001077, theta-L2 = 0.002868, sx-Linf = 0.004281, sx-L2 = 0.005813, ux-Linf = 0.003624, ux-L2 = 0.009427, sigxy-Linf = 0.009771, sigxy-L2 = 0.007215
+************
+ [5-10-2016_20-32-44], RunTime = 27.06
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p05.msh', type = 4, hMax = 0.093973, nElems = 6041, nVerts = 6199
+Method = DG, order = 2, nBasis = 9, nTot = 489321, nnz = 32532473, nnzRatio = 66.48, res = 2.81e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000336, theta-L2 = 0.000725, sx-Linf = 0.001642, sx-L2 = 0.001442, ux-Linf = 0.000928, ux-L2 = 0.002520, sigxy-Linf = 0.002206, sigxy-L2 = 0.001409
+************
+ [5-10-2016_20-33-11], RunTime = 26.53
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p03.msh', type = 4, hMax = 0.059213, nElems = 16874, nVerts = 17137
+Method = DG, order = 1, nBasis = 4, nTot = 607464, nnz = 30010282, nnzRatio = 49.40, res = 2.01e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000213, theta-L2 = 0.000516, sx-Linf = 0.001008, sx-L2 = 0.001070, ux-Linf = 0.000349, ux-L2 = 0.000420, sigxy-Linf = 0.007222, sigxy-L2 = 0.001745
+************
+ [5-10-2016_20-34-41], RunTime = 89.61
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p03.msh', type = 4, hMax = 0.059213, nElems = 16874, nVerts = 17137
+Method = DG, order = 2, nBasis = 9, nTot = 1366794, nnz = 91033393, nnzRatio = 66.60, res = 2.13e-12, nIter = 5
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000148, theta-L2 = 0.000278, sx-Linf = 0.000828, sx-L2 = 0.000539, ux-Linf = 0.000436, ux-L2 = 0.000975, sigxy-Linf = 0.001440, sigxy-L2 = 0.000559
+************
+ [5-10-2016_20-35-15], RunTime = 32.78
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p03.msh', type = 3, hMax = 0.044995, nElems = 34466, nVerts = 17496
+Method = DG, order = 1, nBasis = 3, nTot = 930582, nnz = 43231322, nnzRatio = 46.46, res = 1.78e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000146, theta-L2 = 0.000468, sx-Linf = 0.000621, sx-L2 = 0.000927, ux-Linf = 0.000494, ux-L2 = 0.001073, sigxy-Linf = 0.005301, sigxy-L2 = 0.001559
+************
+ [5-10-2016_20-37-07], RunTime = 110.47
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p03.msh', type = 3, hMax = 0.044995, nElems = 34466, nVerts = 17496
+Method = DG, order = 2, nBasis = 6, nTot = 1861164, nnz = 117119733, nnzRatio = 62.93, res = 2.03e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000080, theta-L2 = 0.000304, sx-Linf = 0.000421, sx-L2 = 0.000570, ux-Linf = 0.000407, ux-L2 = 0.001205, sigxy-Linf = 0.002219, sigxy-L2 = 0.000977
+************
+ [5-10-2016_20-37-29], RunTime = 19.49
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p03.msh', type = 4, hMax = 0.049473, nElems = 12700, nVerts = 12954
+Method = DG, order = 1, nBasis = 4, nTot = 457200, nnz = 22487810, nnzRatio = 49.19, res = 2.46e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000107, theta-L2 = 0.000255, sx-Linf = 0.000282, sx-L2 = 0.000460, ux-Linf = 0.000437, ux-L2 = 0.001672, sigxy-Linf = 0.000801, sigxy-L2 = 0.000688
+************
+ [5-10-2016_20-38-32], RunTime = 62.97
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p03.msh', type = 4, hMax = 0.049473, nElems = 12700, nVerts = 12954
+Method = DG, order = 2, nBasis = 9, nTot = 1028700, nnz = 68258540, nnzRatio = 66.35, res = 2.88e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000014, theta-L2 = 0.000065, sx-Linf = 0.000219, sx-L2 = 0.000203, ux-Linf = 0.000277, ux-L2 = 0.000322, sigxy-Linf = 0.001453, sigxy-L2 = 0.001145
+************
+ [5-10-2016_20-46-26], RunTime = 473.60
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p01.msh', type = 3, hMax = 0.015628, nElems = 312626, nVerts = 157100
+Method = DG, order = 1, nBasis = 3, nTot = 8440902, nnz = 392693006, nnzRatio = 46.52, res = 1.03e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000017, theta-L2 = 0.000056, sx-Linf = 0.000080, sx-L2 = 0.000109, ux-Linf = 0.000055, ux-L2 = 0.000127, sigxy-Linf = 0.001041, sigxy-L2 = 0.000230
+************
+ [5-10-2016_20-52-38], RunTime = 356.52
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p01.msh', type = 4, hMax = 0.021161, nElems = 150378, nVerts = 151165
+Method = DG, order = 1, nBasis = 4, nTot = 5413608, nnz = 267996472, nnzRatio = 49.50, res = 1.13e-12, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000026, theta-L2 = 0.000063, sx-Linf = 0.000243, sx-L2 = 0.000138, ux-Linf = 0.000050, ux-L2 = 0.000046, sigxy-Linf = 0.003110, sigxy-L2 = 0.000360
+************
+ [5-10-2016_20-56-33], RunTime = 227.58
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p01.msh', type = 4, hMax = 0.018644, nElems = 90316, nVerts = 90990
+Method = DG, order = 1, nBasis = 4, nTot = 3251376, nnz = 160672432, nnzRatio = 49.42, res = 1.55e-12, nIter = 5
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000017, theta-L2 = 0.000038, sx-Linf = 0.000046, sx-L2 = 0.000070, ux-Linf = 0.000064, ux-L2 = 0.000254, sigxy-Linf = 0.000111, sigxy-L2 = 0.000085
+************
+ [5-10-2016_21-09-42], RunTime = 783.85
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p01.msh', type = 4, hMax = 0.018644, nElems = 90316, nVerts = 90990
+Method = DG, order = 2, nBasis = 9, nTot = 7315596, nnz = 487355550, nnzRatio = 66.62, res = 1.72e-12, nIter = 5
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000002, theta-L2 = 0.000009, sx-Linf = 0.000031, sx-L2 = 0.000028, ux-Linf = 0.000040, ux-L2 = 0.000046, sigxy-Linf = 0.000211, sigxy-L2 = 0.000154
+************
+ [5-10-2016_21-33-24], RunTime = 1418.74
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p01.msh', type = 3, hMax = 0.015628, nElems = 312626, nVerts = 157100
+Method = DG, order = 2, nBasis = 6, nTot = 16881804, nnz = 1063777450, nnzRatio = 63.01, res = 1.21e-12, nIter = 5
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000009, theta-L2 = 0.000035, sx-Linf = 0.000048, sx-L2 = 0.000065, ux-Linf = 0.000046, ux-L2 = 0.000141, sigxy-Linf = 0.000419, sigxy-L2 = 0.000119
+************
+ [5-10-2016_21-57-50], RunTime = 1447.35
+System = NSF(heat+flow/BCodd), nEqn = 9, tau = 0.10, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p01.msh', type = 4, hMax = 0.021161, nElems = 150378, nVerts = 151165
+Method = DG, order = 2, nBasis = 9, nTot = 12180618, nnz = 812681964, nnzRatio = 66.72, res = 1.24e-12, nIter = 5
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000017, theta-L2 = 0.000033, sx-Linf = 0.000071, sx-L2 = 0.000064, ux-Linf = 0.000062, ux-L2 = 0.000121, sigxy-Linf = 0.000556, sigxy-L2 = 0.000073
+************
+ [5-10-2016_11-43-00], RunTime = 0.25
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p4.msh', type = 4, hMax = 0.658378, nElems = 57, nVerts = 76
+Method = DG, order = 1, nBasis = 4, nTot = 3648, nnz = 279576, nnzRatio = 76.64, res = 1.03e-10, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.019951, theta-L2 = 0.052966, sx-Linf = 0.044731, sx-L2 = 0.120074, ux-Linf = 0.219402, ux-L2 = 0.535259, sigxy-Linf = 0.339638, sigxy-L2 = 0.650437
+************
+ [5-10-2016_11-43-01], RunTime = 0.72
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p2.msh', type = 4, hMax = 0.369073, nElems = 204, nVerts = 238
+Method = DG, order = 1, nBasis = 4, nTot = 13056, nnz = 1020272, nnzRatio = 78.15, res = 7.70e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.008695, theta-L2 = 0.016740, sx-Linf = 0.014009, sx-L2 = 0.032490, ux-Linf = 0.117993, ux-L2 = 0.202891, sigxy-Linf = 0.179543, sigxy-L2 = 0.280295
+************
+ [5-10-2016_11-43-05], RunTime = 3.77
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p1.msh', type = 4, hMax = 0.182058, nElems = 897, nVerts = 966
+Method = DG, order = 1, nBasis = 4, nTot = 57408, nnz = 4634927, nnzRatio = 80.74, res = 5.69e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.002266, theta-L2 = 0.003043, sx-Linf = 0.005833, sx-L2 = 0.008057, ux-Linf = 0.038207, ux-L2 = 0.043577, sigxy-Linf = 0.057185, sigxy-L2 = 0.066661
+************
+ [5-10-2016_11-43-23], RunTime = 17.90
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p05.msh', type = 4, hMax = 0.090398, nElems = 3753, nVerts = 3892
+Method = DG, order = 1, nBasis = 4, nTot = 240192, nnz = 19562449, nnzRatio = 81.45, res = 4.04e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000447, theta-L2 = 0.000520, sx-Linf = 0.002467, sx-L2 = 0.003366, ux-Linf = 0.009064, ux-L2 = 0.007161, sigxy-Linf = 0.015309, sigxy-L2 = 0.014266
+************
+ [5-10-2016_11-43-24], RunTime = 0.74
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p4.msh', type = 4, hMax = 0.658378, nElems = 57, nVerts = 76
+Method = DG, order = 2, nBasis = 9, nTot = 8208, nnz = 833221, nnzRatio = 101.51, res = 2.21e-10, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.002054, theta-L2 = 0.006054, sx-Linf = 0.027395, sx-L2 = 0.055840, ux-Linf = 0.050786, ux-L2 = 0.111837, sigxy-Linf = 0.190803, sigxy-L2 = 0.304303
+************
+ [5-10-2016_11-43-26], RunTime = 2.38
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p2.msh', type = 4, hMax = 0.369073, nElems = 204, nVerts = 238
+Method = DG, order = 2, nBasis = 9, nTot = 29376, nnz = 3035652, nnzRatio = 103.34, res = 1.66e-10, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000578, theta-L2 = 0.001217, sx-Linf = 0.008874, sx-L2 = 0.013454, ux-Linf = 0.015567, ux-L2 = 0.021196, sigxy-Linf = 0.078554, sigxy-L2 = 0.098562
+************
+ [5-10-2016_11-43-38], RunTime = 11.33
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p1.msh', type = 4, hMax = 0.182058, nElems = 897, nVerts = 966
+Method = DG, order = 2, nBasis = 9, nTot = 129168, nnz = 13742422, nnzRatio = 106.39, res = 1.11e-10, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000136, theta-L2 = 0.000272, sx-Linf = 0.002550, sx-L2 = 0.002798, ux-Linf = 0.003530, ux-L2 = 0.003602, sigxy-Linf = 0.022732, sigxy-L2 = 0.024213
+************
+ [5-10-2016_11-44-31], RunTime = 52.99
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p05.msh', type = 4, hMax = 0.090398, nElems = 3753, nVerts = 3892
+Method = DG, order = 2, nBasis = 9, nTot = 540432, nnz = 57948605, nnzRatio = 107.23, res = 7.79e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000033, theta-L2 = 0.000070, sx-Linf = 0.000643, sx-L2 = 0.000629, ux-Linf = 0.000876, ux-L2 = 0.000828, sigxy-Linf = 0.006454, sigxy-L2 = 0.005951
+************
+ [5-10-2016_11-44-31], RunTime = 0.36
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p8.msh', type = 3, hMax = 0.991671, nElems = 119, nVerts = 75
+Method = DG, order = 1, nBasis = 3, nTot = 5712, nnz = 432494, nnzRatio = 75.72, res = 1.39e-10, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.029700, theta-L2 = 0.098818, sx-Linf = 0.184174, sx-L2 = 0.534400, ux-Linf = 0.129790, ux-L2 = 0.345343, sigxy-Linf = 0.260891, sigxy-L2 = 0.632170
+************
+ [5-10-2016_11-44-32], RunTime = 0.71
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p4.msh', type = 3, hMax = 0.514267, nElems = 301, nVerts = 174
+Method = DG, order = 1, nBasis = 3, nTot = 14448, nnz = 1104333, nnzRatio = 76.44, res = 8.03e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.025992, theta-L2 = 0.066476, sx-Linf = 0.189041, sx-L2 = 0.371117, ux-Linf = 0.071624, ux-L2 = 0.166512, sigxy-Linf = 0.199343, sigxy-L2 = 0.404696
+************
+ [5-10-2016_11-44-34], RunTime = 1.96
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p2.msh', type = 3, hMax = 0.267589, nElems = 783, nVerts = 432
+Method = DG, order = 1, nBasis = 3, nTot = 37584, nnz = 2893353, nnzRatio = 76.98, res = 6.16e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.020108, theta-L2 = 0.019810, sx-Linf = 0.085179, sx-L2 = 0.154882, ux-Linf = 0.086119, ux-L2 = 0.114605, sigxy-Linf = 0.184525, sigxy-L2 = 0.211511
+************
+ [5-10-2016_11-44-43], RunTime = 8.46
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p1.msh', type = 3, hMax = 0.144162, nElems = 3170, nVerts = 1665
+Method = DG, order = 1, nBasis = 3, nTot = 152160, nnz = 11773594, nnzRatio = 77.38, res = 3.92e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.006925, theta-L2 = 0.006590, sx-Linf = 0.024861, sx-L2 = 0.040879, ux-Linf = 0.055924, ux-L2 = 0.038695, sigxy-Linf = 0.094788, sigxy-L2 = 0.077296
+************
+ [5-10-2016_11-45-26], RunTime = 43.46
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p05.msh', type = 3, hMax = 0.073279, nElems = 12391, nVerts = 6354
+Method = DG, order = 1, nBasis = 3, nTot = 594768, nnz = 46131367, nnzRatio = 77.56, res = 2.86e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.003071, theta-L2 = 0.001746, sx-Linf = 0.006146, sx-L2 = 0.010801, ux-Linf = 0.016326, ux-L2 = 0.012370, sigxy-Linf = 0.028512, sigxy-L2 = 0.021785
+************
+ [5-10-2016_11-45-28], RunTime = 0.84
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p8.msh', type = 3, hMax = 0.991671, nElems = 119, nVerts = 75
+Method = DG, order = 2, nBasis = 6, nTot = 11424, nnz = 1156436, nnzRatio = 101.23, res = 1.61e-10, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.008417, theta-L2 = 0.031898, sx-Linf = 0.042070, sx-L2 = 0.156739, ux-Linf = 0.047775, ux-L2 = 0.191884, sigxy-Linf = 0.160688, sigxy-L2 = 0.359596
+************
+ [5-10-2016_11-45-30], RunTime = 2.16
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p4.msh', type = 3, hMax = 0.514267, nElems = 301, nVerts = 174
+Method = DG, order = 2, nBasis = 6, nTot = 28896, nnz = 2950138, nnzRatio = 102.10, res = 1.25e-10, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.007354, theta-L2 = 0.014559, sx-Linf = 0.042319, sx-L2 = 0.111719, ux-Linf = 0.046060, ux-L2 = 0.087321, sigxy-Linf = 0.088513, sigxy-L2 = 0.214672
+************
+ [5-10-2016_11-45-36], RunTime = 5.93
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p2.msh', type = 3, hMax = 0.267589, nElems = 783, nVerts = 432
+Method = DG, order = 2, nBasis = 6, nTot = 75168, nnz = 7736959, nnzRatio = 102.93, res = 8.56e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.004837, theta-L2 = 0.005689, sx-Linf = 0.025828, sx-L2 = 0.054487, ux-Linf = 0.030301, ux-L2 = 0.045820, sigxy-Linf = 0.048647, sigxy-L2 = 0.097405
+************
+ [5-10-2016_11-46-00], RunTime = 24.55
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p1.msh', type = 3, hMax = 0.144162, nElems = 3170, nVerts = 1665
+Method = DG, order = 2, nBasis = 6, nTot = 304320, nnz = 31479024, nnzRatio = 103.44, res = 6.57e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.001173, theta-L2 = 0.001197, sx-Linf = 0.006140, sx-L2 = 0.013589, ux-Linf = 0.009116, ux-L2 = 0.010306, sigxy-Linf = 0.016326, sigxy-L2 = 0.024784
+************
+ [5-10-2016_11-47-59], RunTime = 118.03
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p05.msh', type = 3, hMax = 0.073279, nElems = 12391, nVerts = 6354
+Method = DG, order = 2, nBasis = 6, nTot = 1189536, nnz = 123337815, nnzRatio = 103.69, res = 4.44e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000305, theta-L2 = 0.000267, sx-Linf = 0.001540, sx-L2 = 0.003390, ux-Linf = 0.002167, ux-L2 = 0.002371, sigxy-Linf = 0.003806, sigxy-L2 = 0.005899
+************
+ [5-10-2016_11-48-00], RunTime = 0.68
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p4.msh', type = 4, hMax = 0.460843, nElems = 155, nVerts = 178
+Method = DG, order = 1, nBasis = 4, nTot = 9920, nnz = 797206, nnzRatio = 80.36, res = 9.72e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.012464, theta-L2 = 0.018610, sx-Linf = 0.080256, sx-L2 = 0.140751, ux-Linf = 0.176640, ux-L2 = 0.185281, sigxy-Linf = 0.124016, sigxy-L2 = 0.170330
+************
+ [5-10-2016_11-48-01], RunTime = 1.49
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p2.msh', type = 4, hMax = 0.361968, nElems = 369, nVerts = 409
+Method = DG, order = 1, nBasis = 4, nTot = 23616, nnz = 1909606, nnzRatio = 80.86, res = 6.85e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.011145, theta-L2 = 0.014924, sx-Linf = 0.059596, sx-L2 = 0.110594, ux-Linf = 0.158490, ux-L2 = 0.134229, sigxy-Linf = 0.073838, sigxy-L2 = 0.105208
+************
+ [5-10-2016_11-48-08], RunTime = 6.35
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p1.msh', type = 4, hMax = 0.185343, nElems = 1498, nVerts = 1577
+Method = DG, order = 1, nBasis = 4, nTot = 95872, nnz = 7816710, nnzRatio = 81.53, res = 5.13e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.007125, theta-L2 = 0.005705, sx-Linf = 0.018183, sx-L2 = 0.029483, ux-Linf = 0.070234, ux-L2 = 0.040445, sigxy-Linf = 0.038187, sigxy-L2 = 0.030203
+************
+ [5-10-2016_11-48-36], RunTime = 28.26
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p05.msh', type = 4, hMax = 0.093973, nElems = 6041, nVerts = 6199
+Method = DG, order = 1, nBasis = 4, nTot = 386624, nnz = 31638456, nnzRatio = 81.83, res = 3.66e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.004145, theta-L2 = 0.002073, sx-Linf = 0.005456, sx-L2 = 0.008366, ux-Linf = 0.030068, ux-L2 = 0.013113, sigxy-Linf = 0.015767, sigxy-L2 = 0.010063
+************
+ [5-10-2016_11-48-38], RunTime = 1.86
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p4.msh', type = 4, hMax = 0.460843, nElems = 155, nVerts = 178
+Method = DG, order = 2, nBasis = 9, nTot = 22320, nnz = 2365475, nnzRatio = 105.98, res = 1.43e-10, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.001828, theta-L2 = 0.003797, sx-Linf = 0.039346, sx-L2 = 0.068536, ux-Linf = 0.035477, ux-L2 = 0.041219, sigxy-Linf = 0.045457, sigxy-L2 = 0.092516
+************
+ [5-10-2016_11-48-43], RunTime = 4.49
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p2.msh', type = 4, hMax = 0.361968, nElems = 369, nVerts = 409
+Method = DG, order = 2, nBasis = 9, nTot = 53136, nnz = 5662670, nnzRatio = 106.57, res = 1.11e-10, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.002118, theta-L2 = 0.002841, sx-Linf = 0.026886, sx-L2 = 0.050323, ux-Linf = 0.020637, ux-L2 = 0.027815, sigxy-Linf = 0.064079, sigxy-L2 = 0.073263
+************
+ [5-10-2016_11-49-02], RunTime = 19.62
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p1.msh', type = 4, hMax = 0.185343, nElems = 1498, nVerts = 1577
+Method = DG, order = 2, nBasis = 9, nTot = 215712, nnz = 23152126, nnzRatio = 107.33, res = 8.42e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000615, theta-L2 = 0.000777, sx-Linf = 0.008013, sx-L2 = 0.012429, ux-Linf = 0.006212, ux-L2 = 0.006916, sigxy-Linf = 0.013373, sigxy-L2 = 0.021414
+************
+ [5-10-2016_11-50-34], RunTime = 91.85
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p05.msh', type = 4, hMax = 0.093973, nElems = 6041, nVerts = 6199
+Method = DG, order = 2, nBasis = 9, nTot = 869904, nnz = 93672480, nnzRatio = 107.68, res = 5.66e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000167, theta-L2 = 0.000195, sx-Linf = 0.002237, sx-L2 = 0.003032, ux-Linf = 0.002181, ux-L2 = 0.001855, sigxy-Linf = 0.003994, sigxy-L2 = 0.005568
+************
+ [5-10-2016_11-52-06], RunTime = 91.38
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p03.msh', type = 4, hMax = 0.059213, nElems = 16874, nVerts = 17137
+Method = DG, order = 1, nBasis = 4, nTot = 1079936, nnz = 88502688, nnzRatio = 81.95, res = 2.68e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.002284, theta-L2 = 0.001114, sx-Linf = 0.002262, sx-L2 = 0.003023, ux-Linf = 0.014962, ux-L2 = 0.005553, sigxy-Linf = 0.007013, sigxy-L2 = 0.004389
+************
+ [5-10-2016_11-58-03], RunTime = 356.24
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p03.msh', type = 4, hMax = 0.059213, nElems = 16874, nVerts = 17137
+Method = DG, order = 2, nBasis = 9, nTot = 2429856, nnz = 261990046, nnzRatio = 107.82, res = 4.30e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000064, theta-L2 = 0.000073, sx-Linf = 0.001205, sx-L2 = 0.001117, ux-Linf = 0.001164, ux-L2 = 0.000692, sigxy-Linf = 0.001997, sigxy-L2 = 0.002069
+************
+ [5-10-2016_12-00-04], RunTime = 120.13
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p03.msh', type = 3, hMax = 0.044995, nElems = 34466, nVerts = 17496
+Method = DG, order = 1, nBasis = 3, nTot = 1654368, nnz = 128441262, nnzRatio = 77.64, res = 2.17e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.001437, theta-L2 = 0.000655, sx-Linf = 0.002210, sx-L2 = 0.003939, ux-Linf = 0.012084, ux-L2 = 0.005579, sigxy-Linf = 0.010383, sigxy-L2 = 0.007977
+************
+ [5-10-2016_12-06-31], RunTime = 386.10
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p03.msh', type = 3, hMax = 0.044995, nElems = 34466, nVerts = 17496
+Method = DG, order = 2, nBasis = 6, nTot = 3308736, nnz = 343401778, nnzRatio = 103.79, res = 3.34e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000104, theta-L2 = 0.000091, sx-Linf = 0.000547, sx-L2 = 0.001216, ux-Linf = 0.000786, ux-L2 = 0.000826, sigxy-Linf = 0.001318, sigxy-L2 = 0.002030
+************
+ [5-10-2016_12-07-43], RunTime = 70.45
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p03.msh', type = 4, hMax = 0.049473, nElems = 12700, nVerts = 12954
+Method = DG, order = 1, nBasis = 4, nTot = 812800, nnz = 66328276, nnzRatio = 81.60, res = 3.04e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000092, theta-L2 = 0.000131, sx-Linf = 0.001009, sx-L2 = 0.001482, ux-Linf = 0.002188, ux-L2 = 0.001358, sigxy-Linf = 0.004589, sigxy-L2 = 0.004101
+************
+ [5-10-2016_12-11-20], RunTime = 216.79
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p03.msh', type = 4, hMax = 0.049473, nElems = 12700, nVerts = 12954
+Method = DG, order = 2, nBasis = 9, nTot = 1828800, nnz = 196443432, nnzRatio = 107.42, res = 5.92e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000010, theta-L2 = 0.000022, sx-Linf = 0.000187, sx-L2 = 0.000177, ux-Linf = 0.000277, ux-L2 = 0.000240, sigxy-Linf = 0.002049, sigxy-L2 = 0.001727
+************
+ [5-10-2016_12-40-22], RunTime = 1741.35
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p01.msh', type = 3, hMax = 0.015628, nElems = 312626, nVerts = 157100
+Method = DG, order = 1, nBasis = 3, nTot = 15006048, nnz = 1166145653, nnzRatio = 77.71, res = 1.30e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000319, theta-L2 = 0.000089, sx-Linf = 0.000266, sx-L2 = 0.000495, ux-Linf = 0.003058, ux-L2 = 0.001018, sigxy-Linf = 0.001696, sigxy-L2 = 0.000934
+************
+ [5-10-2016_13-08-30], RunTime = 1677.84
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p01.msh', type = 4, hMax = 0.021161, nElems = 150378, nVerts = 151165
+Method = DG, order = 1, nBasis = 4, nTot = 9624192, nnz = 789816408, nnzRatio = 82.07, res = 1.58e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000583, theta-L2 = 0.000248, sx-Linf = 0.000324, sx-L2 = 0.000373, ux-Linf = 0.002906, ux-L2 = 0.000847, sigxy-Linf = 0.001095, sigxy-L2 = 0.000579
+************
+ [5-10-2016_13-22-00], RunTime = 804.61
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p01.msh', type = 4, hMax = 0.018644, nElems = 90316, nVerts = 90990
+Method = DG, order = 1, nBasis = 4, nTot = 5780224, nnz = 473567576, nnzRatio = 81.93, res = 1.87e-11, nIter = 4
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000014, theta-L2 = 0.000019, sx-Linf = 0.000189, sx-L2 = 0.000297, ux-Linf = 0.000180, ux-L2 = 0.000138, sigxy-Linf = 0.000614, sigxy-L2 = 0.000598
+************
+ [5-10-2016_14-12-06], RunTime = 3003.99
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeStructuredH0p01.msh', type = 4, hMax = 0.018644, nElems = 90316, nVerts = 90990
+Method = DG, order = 2, nBasis = 9, nTot = 13005504, nnz = 1401965712, nnzRatio = 107.80, res = 3.46e-11, nIter = 5
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000001, theta-L2 = 0.000003, sx-Linf = 0.000025, sx-L2 = 0.000024, ux-Linf = 0.000042, ux-L2 = 0.000033, sigxy-Linf = 0.000286, sigxy-L2 = 0.000223
+************
+ [5-10-2016_15-53-58], RunTime = 6108.16
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeH0p01.msh', type = 3, hMax = 0.015628, nElems = 312626, nVerts = 157100
+Method = DG, order = 2, nBasis = 6, nTot = 30012096, nnz = 3117828639, nnzRatio = -39.22, res = 2.04e-11, nIter = 5
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000012, theta-L2 = 0.000010, sx-Linf = 0.000060, sx-L2 = 0.000140, ux-Linf = 0.000113, ux-L2 = 0.000090, sigxy-Linf = 0.000148, sigxy-L2 = 0.000227
+************
+ [5-10-2016_17-37-12], RunTime = 6184.14
+System = R13(heat+flow/BCodd), nEqn = 16, tau = 1.00, chi = 1.00, theta0 = 1.00, theta1 = 2.00, v0 = 1.00, A0 = 0.00, A1 = 0.00, A2 = 0.00, eps = 1.00e-05
+MeshFile = '../grids/TwoCirclesLargeGmshQuadsH0p01.msh', type = 4, hMax = 0.021161, nElems = 150378, nVerts = 151165
+Method = DG, order = 2, nBasis = 9, nTot = 21654432, nnz = 2337747121, nnzRatio = -90.38, res = 2.55e-11, nIter = 5
+Errors = theta/sx/ux/sigxy, theta-Linf = 0.000016, theta-L2 = 0.000009, sx-Linf = 0.000112, sx-L2 = 0.000133, ux-Linf = 0.000101, ux-L2 = 0.000081, sigxy-Linf = 0.000327, sigxy-L2 = 0.000231
+************

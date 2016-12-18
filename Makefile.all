@@ -1,0 +1,25 @@
+###############################################################################
+### Generic recipes for compilation, linking and cleaning
+###############################################################################
+
+vpath %.cpp $(HOMEDIR)/$(PROBLEM) $(SDIR)
+                                   
+PROG = $(PROBLEM).out          
+OBJS = $(patsubst %,$(ODIR)/%,$(SRCS:.cpp=.o))
+
+default: $(PROG)
+
+$(PROG): $(OBJS)
+	$(CC) -o $(PROG) $(OBJS) $(LDLIBS)
+	date
+
+$(ODIR)/%.o: %.cpp
+	$(CC) -c -o $@ $< $(CFLAGS) 
+
+
+clean:	
+	clear
+	rm -rf $(OBJS) $(PROG) 
+
+all:
+	make

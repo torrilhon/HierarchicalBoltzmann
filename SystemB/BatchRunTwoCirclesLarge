@@ -1,0 +1,23 @@
+#!/bin/sh
+logfile="../output/LogFileB.txt"
+./SystemB.out ../grids/TwoCirclesLargeStructuredH0p4.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeStructuredH0p2.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeStructuredH0p1.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeStructuredH0p05.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeH0p8.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeH0p4.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeH0p2.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeH0p1.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeH0p05.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeGmshQuadsH0p4.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeGmshQuadsH0p2.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeGmshQuadsH0p1.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeGmshQuadsH0p05.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeStructuredH0p03.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeStructuredH0p01.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeH0p03.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeH0p01.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeGmshQuadsH0p03.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+./SystemB.out ../grids/TwoCirclesLargeGmshQuadsH0p01.msh -tau $1 -order $2 -kappa $3 -mfile $logfile
+
+

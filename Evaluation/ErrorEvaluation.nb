@@ -1,0 +1,2315 @@
+Notebook[{
+Cell[BoxData[{
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"StringJoin", "[", 
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<../output\>\""}], 
+   "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Remove", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Off", "[", 
+   RowBox[{"Read", "::", "readn"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"GetNumber", "[", "str_", "]"}], ":=", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"num", "=", 
+      RowBox[{"Read", "[", 
+       RowBox[{
+        RowBox[{"StringToStream", "[", "str", "]"}], ",", "Number"}], "]"}]}],
+      "}"}], ",", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"num", "===", "$Failed"}], ",", "str", ",", "num"}], "]"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"StringCompareQ", "[", 
+    RowBox[{"str1_", ",", "str2_"}], "]"}], ":=", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"SameQ", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Characters", "[", "str2", "]"}], "\[LeftDoubleBracket]", "1",
+         "\[RightDoubleBracket]"}], ",", "\"\<\\\\\>\""}], "]"}], ",", 
+     RowBox[{"StringContainsQ", "[", 
+      RowBox[{"str1", ",", 
+       RowBox[{"StringJoin", "[", 
+        RowBox[{
+         RowBox[{"Characters", "[", "str2", "]"}], "\[LeftDoubleBracket]", 
+         RowBox[{"2", ";;"}], "\[RightDoubleBracket]"}], "]"}]}], "]"}], ",", 
+     RowBox[{"SameQ", "[", 
+      RowBox[{"str1", ",", "str2"}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"GetData", "[", 
+   RowBox[{"list_", ",", "str_"}], "]"}], ":=", 
+  RowBox[{"Map", "[", 
+   RowBox[{"GetNumber", ",", 
+    RowBox[{"Map", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Extract", "[", 
+        RowBox[{"list", ",", 
+         RowBox[{"#", "+", 
+          RowBox[{"UnitVector", "[", 
+           RowBox[{
+            RowBox[{"Length", "[", "#", "]"}], ",", 
+            RowBox[{"Length", "[", "#", "]"}]}], "]"}]}]}], "]"}], "&"}], ",", 
+      RowBox[{"Position", "[", 
+       RowBox[{"list", ",", "str"}], "]"}]}], "]"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GetPairs", "[", 
+    RowBox[{"list_", ",", "str1_", ",", "str2_"}], "]"}], ":=", 
+   RowBox[{"Apply", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "[", "#", "]"}], "\[Equal]", "0"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{"\[ImaginaryI]", ",", "\[ImaginaryI]"}], "}"}], "}"}], ",", 
+        "#"}], "]"}], "&"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Sort", "[", 
+       RowBox[{"DeleteDuplicates", "[", 
+        RowBox[{"Thread", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"GetData", "[", 
+            RowBox[{"list", ",", "str1"}], "]"}], ",", 
+           RowBox[{"GetData", "[", 
+            RowBox[{"list", ",", "str2"}], "]"}]}], "}"}], "]"}], "]"}], 
+       "]"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SelectDataSets", "[", 
+    RowBox[{"list_", ",", "str_", ",", "val_"}], "]"}], ":=", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"StringQ", "[", "val", "]"}], ",", 
+     RowBox[{"Select", "[", 
+      RowBox[{"list", ",", 
+       RowBox[{
+        RowBox[{"StringCompareQ", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"GetData", "[", 
+            RowBox[{"#", ",", "str"}], "]"}], "\[LeftDoubleBracket]", "1", 
+           "\[RightDoubleBracket]"}], ",", "val"}], "]"}], "&"}]}], "]"}], 
+     ",", 
+     RowBox[{"Select", "[", 
+      RowBox[{"list", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"GetData", "[", 
+           RowBox[{"#", ",", "str"}], "]"}], "\[LeftDoubleBracket]", "1", 
+          "\[RightDoubleBracket]"}], "\[Equal]", "val"}], "&"}]}], "]"}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SelectData", "[", 
+   RowBox[{"list_", ",", "rule_"}], "]"}], ":=", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"sublist", "=", "list"}], "}"}], ",", 
+    RowBox[{
+     RowBox[{"Do", "[", 
+      RowBox[{
+       RowBox[{"sublist", "=", 
+        RowBox[{"SelectDataSets", "[", 
+         RowBox[{"sublist", ",", 
+          RowBox[{"rule", "\[LeftDoubleBracket]", 
+           RowBox[{"i", ",", "1"}], "\[RightDoubleBracket]"}], ",", 
+          RowBox[{"rule", "\[LeftDoubleBracket]", 
+           RowBox[{"i", ",", "2"}], "\[RightDoubleBracket]"}]}], "]"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", 
+         RowBox[{"Length", "[", "rule", "]"}]}], "}"}]}], "]"}], ";", 
+     "sublist"}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ReadData", "[", "filename_", "]"}], ":=", 
+    RowBox[{"Map", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ReadList", "[", 
+        RowBox[{
+         RowBox[{"StringToStream", "[", "#", "]"}], ",", "Word", ",", 
+         RowBox[{"WordSeparators", "->", 
+          RowBox[{"{", 
+           RowBox[{"\"\<, \>\"", ",", "\"\<: \>\"", ",", "\"\< = \>\""}], 
+           "}"}]}]}], "]"}], "&"}], ",", 
+      RowBox[{"ReadList", "[", 
+       RowBox[{
+        RowBox[{"StringToStream", "[", 
+         RowBox[{"StringJoin", "[", 
+          RowBox[{"Riffle", "[", 
+           RowBox[{
+            RowBox[{"ReadList", "[", 
+             RowBox[{"filename", ",", "String"}], "]"}], ",", "\"\<, \>\""}], 
+           "]"}], "]"}], "]"}], ",", "Word", ",", 
+        RowBox[{"WordSeparators", "\[Rule]", 
+         RowBox[{"{", "\"\<************\>\"", "}"}]}]}], "]"}]}], "]"}]}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ReferenceError", "[", 
+     RowBox[{"pt_", ",", "scale_", ",", "order1_", ",", "order2_"}], "]"}], ":=", 
+    RowBox[{"{", 
+     RowBox[{"pt", ",", 
+      RowBox[{"pt", 
+       RowBox[{"{", 
+        RowBox[{
+         SuperscriptBox["scale", 
+          RowBox[{"-", "order1"}]], ",", 
+         SuperscriptBox["scale", 
+          RowBox[{"-", "order2"}]]}], "}"}]}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"stringJoin", "[", "list_", "]"}], ":=", 
+   RowBox[{"StringJoin", "@", 
+    RowBox[{"Riffle", "[", 
+     RowBox[{
+      RowBox[{"Map", "[", 
+       RowBox[{"ToString", ",", "list"}], "]"}], ",", "\"\< \>\""}], 
+     "]"}]}]}], ";"}]}], "Input"],
+
+Cell[CellGroupData[{
+
+Cell["Look her for usage instructions:\[LineSeparator]", "Item",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{},
+ FontSize->18],
+
+Cell["\<\
+Item seperators are \[OpenCurlyQuote],\[CloseCurlyQuote] and \
+\[OpenCurlyQuote]=\[CloseCurlyQuote] 
+These should not be used in the actual entry !! \
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{},
+ FontSize->16,
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Data", "=", 
+   RowBox[{"ReadData", "[", "\"\<LogTwoCirclesLargeA.txt\>\"", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<\\n number of data sets: \>\"", ",", 
+   RowBox[{
+    RowBox[{"Dimensions", "[", "Data", "]"}], "\[LeftDoubleBracket]", "1", 
+    "\[RightDoubleBracket]"}], ",", "\"\<\\n\>\""}], "]"}]}], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\\n number of data sets: \"\>", "\[InvisibleSpace]", "607", 
+   "\[InvisibleSpace]", "\<\"\\n\"\>"}],
+  SequenceForm["\n number of data sets: ", 607, "\n"],
+  Editable->False]], "Print",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell["example of a data set:", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{},
+ FontSize->16,
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell[BoxData[
+ RowBox[{"Data", "\[LeftDoubleBracket]", "1", 
+  "\[RightDoubleBracket]"}]], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\" [15-7-2016_14-33-11]\"\>", ",", "\<\"RunTime\"\>", 
+   ",", "\<\"0.19\"\>", ",", "\<\"System\"\>", ",", "\<\"A(mixed/BCodd)\"\>", 
+   ",", "\<\"nEqn\"\>", ",", "\<\"6\"\>", ",", "\<\"tau\"\>", 
+   ",", "\<\"0.10\"\>", ",", "\<\"zeta\"\>", ",", "\<\"1.00\"\>", 
+   ",", "\<\"kappa\"\>", ",", "\<\"1.00\"\>", ",", "\<\"chi\"\>", 
+   ",", "\<\"1.00\"\>", ",", "\<\"theta0\"\>", ",", "\<\"1.00\"\>", 
+   ",", "\<\"theta1\"\>", ",", "\<\"0.50\"\>", ",", "\<\"uW\"\>", 
+   ",", "\<\"5.00\"\>", ",", "\<\"A0\"\>", ",", "\<\"2.00\"\>", 
+   ",", "\<\"A1\"\>", ",", "\<\"0.00\"\>", ",", "\<\"A2\"\>", 
+   ",", "\<\"-1.00\"\>", ",", "\<\"MeshFile\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeStructuredH0p4.msh'\"\>", 
+   ",", "\<\"type\"\>", ",", "\<\"4\"\>", ",", "\<\"hMax\"\>", 
+   ",", "\<\"0.658378\"\>", ",", "\<\"nElems\"\>", ",", "\<\"57\"\>", 
+   ",", "\<\"nVerts\"\>", ",", "\<\"76\"\>", ",", "\<\"Method\"\>", 
+   ",", "\<\"DG\"\>", ",", "\<\"order\"\>", ",", "\<\"1\"\>", 
+   ",", "\<\"nBasis\"\>", ",", "\<\"4\"\>", ",", "\<\"nTot\"\>", 
+   ",", "\<\"1368\"\>", ",", "\<\"nnz\"\>", ",", "\<\"50492\"\>", 
+   ",", "\<\"nnzRatio\"\>", ",", "\<\"36.91\"\>", ",", "\<\"res\"\>", 
+   ",", "\<\"8.94e-16\"\>", ",", "\<\"nIter\"\>", ",", "\<\"4\"\>", 
+   ",", "\<\"Errors\"\>", ",", "\<\"theta/sx\"\>", ",", "\<\"theta-Linf\"\>", 
+   ",", "\<\"0.164462\"\>", ",", "\<\"theta-L2\"\>", ",", "\<\"0.535388\"\>", 
+   ",", "\<\"sx-Linf\"\>", ",", "\<\"0.788371\"\>", ",", "\<\"sx-L2\"\>", 
+   ",", "\<\"1.466643\"\>"}], "}"}]], "Output",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell["\<\
+you can extract all the numerical values associated with a specific entry:\
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{},
+ FontSize->16,
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell[BoxData[
+ RowBox[{"GetData", "[", 
+  RowBox[{"Data", ",", "\"\<tau\>\""}], "]"}]], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", 
+   ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", 
+   "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", 
+   ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", 
+   "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", 
+   ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", 
+   "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "1.`", 
+   ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", 
+   ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", 
+   ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", 
+   ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", 
+   ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", 
+   ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", 
+   ",", "1.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", 
+   "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", 
+   ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", 
+   "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", 
+   ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", 
+   "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", 
+   ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", 
+   "10.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "0.1`", ",", 
+   "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", 
+   ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", 
+   "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", 
+   ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", 
+   "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", 
+   ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", 
+   "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "1.`", ",", "1.`", ",",
+    "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", 
+   "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", 
+   "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", 
+   "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", 
+   "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", 
+   "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", 
+   "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", 
+   ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", 
+   "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", 
+   ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", 
+   "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", 
+   ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", 
+   "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "100.`", 
+   ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", 
+   ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", 
+   "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", 
+   ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", 
+   "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", 
+   ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", 
+   ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", 
+   ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", 
+   ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", 
+   ",", "1.`", ",", "1.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`",
+    ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", 
+   "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", 
+   ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", 
+   "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", 
+   ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", 
+   ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", 
+   "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", 
+   ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", 
+   "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "1.`", 
+   ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", 
+   ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", 
+   ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", 
+   ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", 
+   ",", "1.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", 
+   "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", 
+   ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", 
+   "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", 
+   ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", 
+   ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", 
+   "0.1`", ",", "0.1`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", 
+   "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", 
+   "1.`", ",", "1.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",",
+    "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", 
+   ",", "10.`", ",", "10.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "0.1`", ",", 
+   "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", 
+   ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", "0.1`", ",", 
+   "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", 
+   "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", "1.`", ",", 
+   "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", 
+   ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", "10.`", ",", 
+   "10.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", "100.`", ",", 
+   "100.`", ",", "100.`"}], "}"}]], "Output",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell[BoxData[
+ RowBox[{"DeleteDuplicates", "[", 
+  RowBox[{"GetData", "[", 
+   RowBox[{"Data", ",", "\"\<MeshFile\>\""}], "]"}], "]"}]], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"'../grids/TwoCirclesLargeStructuredH0p4.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeStructuredH0p2.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeStructuredH0p1.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeStructuredH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeH0p8.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeH0p4.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeH0p2.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeH0p1.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p4.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p2.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p1.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeStructuredH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeStructuredH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>"}], 
+  "}"}]], "Output",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell["\<\
+you can extract the values of a subset where entries (here \
+\[OpenCurlyDoubleQuote]order\[CloseCurlyDoubleQuote]) have specific values \
+(here 2):\
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ FontSize->16,
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell[BoxData[
+ RowBox[{"GetData", "[", 
+  RowBox[{
+   RowBox[{"SelectDataSets", "[", 
+    RowBox[{"Data", ",", "\"\<tau\>\"", ",", "0.1"}], "]"}], ",", 
+   "\"\<nVerts\>\""}], "]"}]], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "76", ",", "238", ",", "966", ",", "3892", ",", "75", ",", "174", ",", 
+   "432", ",", "1665", ",", "6354", ",", "178", ",", "409", ",", "1577", ",", 
+   "6199", ",", "12954", ",", "90990", ",", "17496", ",", "157100", ",", 
+   "17137", ",", "151165", ",", "76", ",", "238", ",", "966", ",", "3892", 
+   ",", "75", ",", "174", ",", "432", ",", "1665", ",", "6354", ",", "178", 
+   ",", "409", ",", "1577", ",", "6199", ",", "12954", ",", "90990", ",", 
+   "17496", ",", "157100", ",", "17137", ",", "151165", ",", "76", ",", "238",
+    ",", "966", ",", "3892", ",", "75", ",", "174", ",", "432", ",", "1665", 
+   ",", "6354", ",", "178", ",", "409", ",", "1577", ",", "6199", ",", 
+   "12954", ",", "90990", ",", "17496", ",", "157100", ",", "17137", ",", 
+   "151165", ",", "76", ",", "238", ",", "966", ",", "3892", ",", "75", ",", 
+   "174", ",", "432", ",", "1665", ",", "6354", ",", "178", ",", "409", ",", 
+   "1577", ",", "6199", ",", "12954", ",", "90990", ",", "17496", ",", 
+   "157100", ",", "17137", ",", "151165", ",", "76", ",", "238", ",", "966", 
+   ",", "3892", ",", "75", ",", "174", ",", "432", ",", "1665", ",", "6354", 
+   ",", "178", ",", "409", ",", "1577", ",", "6199", ",", "76", ",", "238", 
+   ",", "966", ",", "3892", ",", "75", ",", "174", ",", "432", ",", "1665", 
+   ",", "6354", ",", "178", ",", "409", ",", "1577", ",", "6199", ",", "76", 
+   ",", "238", ",", "966", ",", "3892", ",", "75", ",", "174", ",", "432", 
+   ",", "1665", ",", "6354", ",", "178", ",", "409", ",", "1577", ",", "6199",
+    ",", "76", ",", "238", ",", "966", ",", "3892", ",", "75", ",", "174", 
+   ",", "432", ",", "1665", ",", "6354", ",", "178", ",", "409", ",", "1577", 
+   ",", "6199", ",", "12954", ",", "90990", ",", "17496", ",", "157100", ",", 
+   "17137", ",", "151165", ",", "12954", ",", "90990", ",", "17496", ",", 
+   "157100", ",", "17137", ",", "151165", ",", "12954", ",", "90990", ",", 
+   "17496", ",", "157100", ",", "17137", ",", "151165", ",", "12954", ",", 
+   "90990", ",", "17496", ",", "157100", ",", "17137", ",", "151165"}], 
+  "}"}]], "Output",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell["\<\
+data sets with string entries can be selected based on contained substrings \
+by starting with \[OpenCurlyDoubleQuote]\\\\\[CloseCurlyDoubleQuote]:\
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ FontSize->16,
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell[BoxData[
+ RowBox[{"GetData", "[", 
+  RowBox[{
+   RowBox[{"SelectDataSets", "[", 
+    RowBox[{"Data", ",", "\"\<MeshFile\>\"", ",", "\"\<\\\\QuadsH0p0\>\""}], 
+    "]"}], ",", "\"\<MeshFile\>\""}], "]"}]], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p05.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p03.msh'\"\>", 
+   ",", "\<\"'../grids/TwoCirclesLargeGmshQuadsH0p01.msh'\"\>"}], 
+  "}"}]], "Output",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell["the selections can be nested:", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{},
+ FontSize->16,
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SelectData", "[", 
+   RowBox[{"Data", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\"\<order\>\"", "\[Rule]", "2"}], ",", 
+      RowBox[{"\"\<tau\>\"", "\[Rule]", "0.1"}], ",", 
+      RowBox[{"\"\<MeshFile\>\"", "\[Rule]", "\"\<\\\\LargeH0p4\>\""}]}], 
+     "}"}]}], "]"}], "//", "TableForm"}]], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\" [15-7-2016_14-41-57]\"\>", "\<\"RunTime\"\>", "\<\"0.45\"\>", \
+"\<\"System\"\>", "\<\"A(mixed/BCodd)\"\>", "\<\"nEqn\"\>", "\<\"6\"\>", \
+"\<\"tau\"\>", "\<\"0.10\"\>", "\<\"zeta\"\>", "\<\"1.00\"\>", \
+"\<\"kappa\"\>", "\<\"1.00\"\>", "\<\"chi\"\>", "\<\"1.00\"\>", "\<\"theta0\"\
+\>", "\<\"1.00\"\>", "\<\"theta1\"\>", "\<\"0.50\"\>", "\<\"uW\"\>", \
+"\<\"5.00\"\>", "\<\"A0\"\>", "\<\"2.00\"\>", "\<\"A1\"\>", "\<\"0.00\"\>", "\
+\<\"A2\"\>", "\<\"-1.00\"\>", "\<\"MeshFile\"\>", \
+"\<\"'../grids/TwoCirclesLargeH0p4.msh'\"\>", "\<\"type\"\>", "\<\"3\"\>", \
+"\<\"hMax\"\>", "\<\"0.514267\"\>", "\<\"nElems\"\>", "\<\"301\"\>", \
+"\<\"nVerts\"\>", "\<\"174\"\>", "\<\"Method\"\>", "\<\"DG\"\>", "\<\"order\"\
+\>", "\<\"2\"\>", "\<\"nBasis\"\>", "\<\"6\"\>", "\<\"nTot\"\>", "\<\"10836\"\
+\>", "\<\"nnz\"\>", "\<\"552400\"\>", "\<\"nnzRatio\"\>", "\<\"50.98\"\>", \
+"\<\"res\"\>", "\<\"1.62e-15\"\>", "\<\"nIter\"\>", "\<\"4\"\>", \
+"\<\"Errors\"\>", "\<\"theta/sx\"\>", "\<\"theta-Linf\"\>", \
+"\<\"0.047251\"\>", "\<\"theta-L2\"\>", "\<\"0.160208\"\>", \
+"\<\"sx-Linf\"\>", "\<\"0.086711\"\>", "\<\"sx-L2\"\>", "\<\"0.119905\"\>"},
+    {"\<\" [15-7-2016_17-05-05]\"\>", "\<\"RunTime\"\>", "\<\"0.46\"\>", \
+"\<\"System\"\>", "\<\"A(mixed/BCodd)\"\>", "\<\"nEqn\"\>", "\<\"6\"\>", \
+"\<\"tau\"\>", "\<\"0.10\"\>", "\<\"zeta\"\>", "\<\"1.00\"\>", \
+"\<\"kappa\"\>", "\<\"0.00\"\>", "\<\"chi\"\>", "\<\"1.00\"\>", "\<\"theta0\"\
+\>", "\<\"1.00\"\>", "\<\"theta1\"\>", "\<\"0.50\"\>", "\<\"uW\"\>", \
+"\<\"5.00\"\>", "\<\"A0\"\>", "\<\"2.00\"\>", "\<\"A1\"\>", "\<\"0.00\"\>", "\
+\<\"A2\"\>", "\<\"-1.00\"\>", "\<\"MeshFile\"\>", \
+"\<\"'../grids/TwoCirclesLargeH0p4.msh'\"\>", "\<\"type\"\>", "\<\"3\"\>", \
+"\<\"hMax\"\>", "\<\"0.514267\"\>", "\<\"nElems\"\>", "\<\"301\"\>", \
+"\<\"nVerts\"\>", "\<\"174\"\>", "\<\"Method\"\>", "\<\"DG\"\>", "\<\"order\"\
+\>", "\<\"2\"\>", "\<\"nBasis\"\>", "\<\"6\"\>", "\<\"nTot\"\>", "\<\"10836\"\
+\>", "\<\"nnz\"\>", "\<\"551848\"\>", "\<\"nnzRatio\"\>", "\<\"50.93\"\>", \
+"\<\"res\"\>", "\<\"1.59e-15\"\>", "\<\"nIter\"\>", "\<\"4\"\>", \
+"\<\"Errors\"\>", "\<\"theta/sx\"\>", "\<\"theta-Linf\"\>", \
+"\<\"0.066295\"\>", "\<\"theta-L2\"\>", "\<\"0.190560\"\>", \
+"\<\"sx-Linf\"\>", "\<\"0.086665\"\>", "\<\"sx-L2\"\>", "\<\"0.122896\"\>"},
+    {"\<\" [16-7-2016_15-31-17]\"\>", "\<\"RunTime\"\>", "\<\"1.99\"\>", \
+"\<\"System\"\>", "\<\"A(radial/BCodd)\"\>", "\<\"nEqn\"\>", "\<\"6\"\>", "\<\
+\"tau\"\>", "\<\"0.10\"\>", "\<\"zeta\"\>", "\<\"1.00\"\>", "\<\"kappa\"\>", \
+"\<\"1.00\"\>", "\<\"chi\"\>", "\<\"1.00\"\>", "\<\"theta0\"\>", \
+"\<\"1.00\"\>", "\<\"theta1\"\>", "\<\"0.50\"\>", "\<\"uW\"\>", \
+"\<\"0.00\"\>", "\<\"A0\"\>", "\<\"2.00\"\>", "\<\"A1\"\>", "\<\"0.00\"\>", "\
+\<\"A2\"\>", "\<\"-1.00\"\>", "\<\"MeshFile\"\>", \
+"\<\"'../grids/TwoCirclesLargeH0p4.msh'\"\>", "\<\"type\"\>", "\<\"3\"\>", \
+"\<\"hMax\"\>", "\<\"0.514267\"\>", "\<\"nElems\"\>", "\<\"301\"\>", \
+"\<\"nVerts\"\>", "\<\"174\"\>", "\<\"Method\"\>", "\<\"DG\"\>", "\<\"order\"\
+\>", "\<\"2\"\>", "\<\"nBasis\"\>", "\<\"6\"\>", "\<\"nTot\"\>", "\<\"10836\"\
+\>", "\<\"nnz\"\>", "\<\"552400\"\>", "\<\"nnzRatio\"\>", "\<\"50.98\"\>", \
+"\<\"res\"\>", "\<\"1.56e-15\"\>", "\<\"nIter\"\>", "\<\"4\"\>", \
+"\<\"Errors\"\>", "\<\"theta/sx\"\>", "\<\"theta-Linf\"\>", \
+"\<\"0.038212\"\>", "\<\"theta-L2\"\>", "\<\"0.186434\"\>", \
+"\<\"sx-Linf\"\>", "\<\"0.031549\"\>", "\<\"sx-L2\"\>", "\<\"0.057464\"\>"},
+    {"\<\" [16-7-2016_15-45-36]\"\>", "\<\"RunTime\"\>", "\<\"1.78\"\>", \
+"\<\"System\"\>", "\<\"A(radial/BCodd)\"\>", "\<\"nEqn\"\>", "\<\"6\"\>", "\<\
+\"tau\"\>", "\<\"0.10\"\>", "\<\"zeta\"\>", "\<\"1.00\"\>", "\<\"kappa\"\>", \
+"\<\"0.00\"\>", "\<\"chi\"\>", "\<\"1.00\"\>", "\<\"theta0\"\>", \
+"\<\"1.00\"\>", "\<\"theta1\"\>", "\<\"0.50\"\>", "\<\"uW\"\>", \
+"\<\"0.00\"\>", "\<\"A0\"\>", "\<\"2.00\"\>", "\<\"A1\"\>", "\<\"0.00\"\>", "\
+\<\"A2\"\>", "\<\"-1.00\"\>", "\<\"MeshFile\"\>", \
+"\<\"'../grids/TwoCirclesLargeH0p4.msh'\"\>", "\<\"type\"\>", "\<\"3\"\>", \
+"\<\"hMax\"\>", "\<\"0.514267\"\>", "\<\"nElems\"\>", "\<\"301\"\>", \
+"\<\"nVerts\"\>", "\<\"174\"\>", "\<\"Method\"\>", "\<\"DG\"\>", "\<\"order\"\
+\>", "\<\"2\"\>", "\<\"nBasis\"\>", "\<\"6\"\>", "\<\"nTot\"\>", "\<\"10836\"\
+\>", "\<\"nnz\"\>", "\<\"551848\"\>", "\<\"nnzRatio\"\>", "\<\"50.93\"\>", \
+"\<\"res\"\>", "\<\"1.53e-15\"\>", "\<\"nIter\"\>", "\<\"4\"\>", \
+"\<\"Errors\"\>", "\<\"theta/sx\"\>", "\<\"theta-Linf\"\>", \
+"\<\"0.040547\"\>", "\<\"theta-L2\"\>", "\<\"0.192332\"\>", \
+"\<\"sx-Linf\"\>", "\<\"0.032571\"\>", "\<\"sx-L2\"\>", "\<\"0.054296\"\>"}
+   },
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}, "RowsIndexed" -> {}}],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell["\<\
+you can group the numerical values for two different entries (sorted and with \
+duplicates eliminated):\
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{},
+ FontSize->16,
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell[BoxData[
+ RowBox[{"GetPairs", "[", 
+  RowBox[{"Data", ",", "\"\<order\>\"", ",", "\"\<tau\>\""}], "]"}]], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0.1`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "10.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "100.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "0.1`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "1.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "10.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "100.`"}], "}"}]}], "}"}]], "Output",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell[BoxData[
+ RowBox[{"GetPairs", "[", 
+  RowBox[{"Data", ",", "\"\<System\>\"", ",", "\"\<kappa\>\""}], 
+  "]"}]], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"A(mixed/BCodd)\"\>", ",", "0.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"A(mixed/BCodd)\"\>", ",", "1.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"A(radial/BCodd)\"\>", ",", "0.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"A(radial/BCodd)\"\>", ",", "1.`"}], "}"}]}], "}"}]], "Output",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell["\<\
+this gives the combination (hmax, theta-Linf) for all entries with order=1 \
+and tau=0.1\
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{},
+ FontSize->16,
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell[BoxData[
+ RowBox[{"GetPairs", "[", 
+  RowBox[{
+   RowBox[{"SelectData", "[", 
+    RowBox[{"Data", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\"\<MeshFile\>\"", "\[Rule]", "\"\<\\\\Quads\>\""}], ",", 
+       RowBox[{"\"\<order\>\"", "\[Rule]", "2"}], ",", 
+       RowBox[{"\"\<tau\>\"", "\[Rule]", "0.1"}], ",", 
+       RowBox[{"\"\<kappa\>\"", "\[Rule]", "1"}]}], "}"}]}], "]"}], ",", 
+   "\"\<hMax\>\"", ",", "\"\<theta-Linf\>\""}], "]"}]], "Input",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"0.021161`", ",", "0.000071`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.021161`", ",", "0.000085`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.059213`", ",", "0.000548`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.059213`", ",", "0.000698`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.093973`", ",", "0.001552`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.093973`", ",", "0.001586`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.185343`", ",", "0.004761`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.185343`", ",", "0.00491`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.361968`", ",", "0.016242`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.361968`", ",", "0.017544`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.460843`", ",", "0.038498`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.460843`", ",", "0.044418`"}], "}"}]}], "}"}]], "Output",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["System A", "Section"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Data", "=", 
+   RowBox[{"ReadData", "[", "\"\<LogTwoCirclesLargeA.txt\>\"", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "Data", "]"}], "\[IndentingNewLine]"}], "Input"],
+
+Cell[BoxData["607"], "Output"]
+}, Open  ]],
+
+Cell["\<\
+System A: radially symmetric case \[OpenCurlyDoubleQuote]A(radial/BCodd)\
+\[CloseCurlyDoubleQuote] and mixed radial/angular case \
+\[OpenCurlyDoubleQuote]A(mixed/BCodd)\[CloseCurlyDoubleQuote]
+both cases use boundary selector matrix for odd variables
+nullspace-critical boundary condition is for normal vector component
+ -> kappa = 1 (L2-stable bc)
+ -> kappa = 0 (unstable bc)
+ 
+ Run times are not fully comparable, because cases were run with varying \
+available resources.\
+\>", "Text",
+ FontColor->RGBColor[0.5, 0, 0.5]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"options", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<MeshFile\>\"", ",", "\"\<System\>\"", ",", "\"\<kappa\>\"", ",", 
+     "\"\<order\>\"", ",", "\"\<tau\>\""}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Do", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"GetChoices", "[", "str", "]"}], "=", 
+     RowBox[{"Sort", "[", 
+      RowBox[{"DeleteDuplicates", "[", 
+       RowBox[{"GetData", "[", 
+        RowBox[{"Data", ",", "str"}], "]"}], "]"}], "]"}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"str", ",", "options"}], "}"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GetChoices", "[", "\"\<MeshFile\>\"", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<\\\\Structured\>\"", ",", "\"\<\\\\Quads\>\"", ",", 
+     "\"\<\\\\LargeH\>\""}], "}"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"variation1", "=", 
+   RowBox[{
+   "options", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"variation2", "=", 
+   RowBox[{
+   "options", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}]}], 
+  ";"}], "\n", 
+ RowBox[{"rest1", ":=", 
+  RowBox[{
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{"options", ",", 
+     RowBox[{"_", "?", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "\[Equal]", "variation1"}], "||", 
+         RowBox[{"#", "\[Equal]", "variation2"}]}], "&"}], ")"}]}]}], "]"}], 
+   "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], "\n", 
+ RowBox[{"rest2", ":=", 
+  RowBox[{
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{"options", ",", 
+     RowBox[{"_", "?", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "\[Equal]", "variation1"}], "||", 
+         RowBox[{"#", "\[Equal]", "variation2"}]}], "&"}], ")"}]}]}], "]"}], 
+   "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], "\n", 
+ RowBox[{"rest3", ":=", 
+  RowBox[{
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{"options", ",", 
+     RowBox[{"_", "?", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "\[Equal]", "variation1"}], "||", 
+         RowBox[{"#", "\[Equal]", "variation2"}]}], "&"}], ")"}]}]}], "]"}], 
+   "\[LeftDoubleBracket]", "3", 
+   "\[RightDoubleBracket]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"InitFix", ":=", 
+   RowBox[{"(", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"fix1", "=", 
+      RowBox[{
+       RowBox[{"GetChoices", "[", "rest1", "]"}], "\[LeftDoubleBracket]", "1",
+        "\[RightDoubleBracket]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"fix2", "=", 
+      RowBox[{
+       RowBox[{"GetChoices", "[", "rest2", "]"}], "\[LeftDoubleBracket]", "1",
+        "\[RightDoubleBracket]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"fix3", "=", 
+      RowBox[{
+       RowBox[{"GetChoices", "[", "rest3", "]"}], "\[LeftDoubleBracket]", "3",
+        "\[RightDoubleBracket]"}]}], ";"}], "\[IndentingNewLine]", ")"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"var11", "=", 
+   RowBox[{
+    RowBox[{"GetChoices", "[", "variation1", "]"}], "\[LeftDoubleBracket]", 
+    "2", "\[RightDoubleBracket]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"var12", "=", 
+   RowBox[{
+    RowBox[{"GetChoices", "[", "variation1", "]"}], "\[LeftDoubleBracket]", 
+    "2", "\[RightDoubleBracket]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"var21", "=", 
+   RowBox[{
+    RowBox[{"GetChoices", "[", "variation2", "]"}], "\[LeftDoubleBracket]", 
+    "1", "\[RightDoubleBracket]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"var22", "=", 
+   RowBox[{
+    RowBox[{"GetChoices", "[", "variation2", "]"}], "\[LeftDoubleBracket]", 
+    "2", "\[RightDoubleBracket]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"InitFix", ";"}], "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GetChoices", "[", "\"\<Errors\>\"", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<theta-Linf\>\"", ",", "\"\<sx-Linf\>\"", ",", "\"\<theta-L2\>\"", 
+     ",", "\"\<sx-L2\>\""}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"err1", "=", 
+   RowBox[{
+    RowBox[{"GetChoices", "[", "\"\<Errors\>\"", "]"}], 
+    "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"err2", "=", 
+   RowBox[{
+    RowBox[{"GetChoices", "[", "\"\<Errors\>\"", "]"}], 
+    "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xAxis", "=", "\"\<hMax\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"range", "[", "\"\<hMax\>\"", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"0.006", ",", "1.5"}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ref1", "[", "\"\<hMax\>\"", "]"}], "=", 
+   RowBox[{"ReferenceError", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0.5", ",", "0.5"}], "}"}], ",", "30", ",", "1", ",", "1"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ref2", "[", "\"\<hMax\>\"", "]"}], "=", 
+   RowBox[{"ReferenceError", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0.5", ",", "0.5"}], "}"}], ",", "30", ",", "1", ",", "2"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"range", "[", "\"\<RunTime\>\"", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"0.5", ",", "1000"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ref1", "[", "\"\<RunTime\>\"", "]"}], "=", 
+   RowBox[{"ReferenceError", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0.5", ",", "1.5"}], "}"}], ",", "100", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ref2", "[", "\"\<RunTime\>\"", "]"}], "=", 
+   RowBox[{"ReferenceError", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0.5", ",", "1.5"}], "}"}], ",", "100", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]"}], "Input"],
+
+Cell[BoxData[{
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"Grid", "[", 
+   RowBox[{
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<Variation1: \>\"", ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", 
+           RowBox[{"variation1", ",", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"variation1", "\[NotEqual]", "#"}], ",", 
+                RowBox[{
+                 RowBox[{"variation1", "=", "#"}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"var11", "=", 
+                  RowBox[{
+                   RowBox[{"GetChoices", "[", "variation1", "]"}], 
+                   "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+                 ";", "\[IndentingNewLine]", 
+                 RowBox[{"var12", "=", 
+                  RowBox[{
+                   RowBox[{"GetChoices", "[", "variation1", "]"}], 
+                   "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+                 ";", "\[IndentingNewLine]", "InitFix", ";"}]}], "]"}], ")"}],
+              "&"}]}], "]"}], ",", "options"}], "]"}], ",", "\"\<   \>\"", 
+        ",", "\[IndentingNewLine]", "\"\<Variation2: \>\"", ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", 
+           RowBox[{"variation2", ",", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"variation2", "\[NotEqual]", "#"}], ",", 
+                RowBox[{
+                 RowBox[{"variation2", "=", "#"}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"var21", "=", 
+                  RowBox[{
+                   RowBox[{"GetChoices", "[", "variation2", "]"}], 
+                   "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+                 ";", "\[IndentingNewLine]", 
+                 RowBox[{"var22", "=", 
+                  RowBox[{
+                   RowBox[{"GetChoices", "[", "variation2", "]"}], 
+                   "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+                 ";", "\[IndentingNewLine]", "InitFix", ";"}]}], "]"}], ")"}],
+              "&"}]}], "]"}], ",", "options"}], "]"}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", "variation1", "]"}], "<>", "\"\<1: \>\""}], 
+        ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "var11", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "variation1", "]"}]}], "]"}], ",", 
+        "\"\<  \>\"", ",", 
+        RowBox[{
+         RowBox[{"ToString", "[", "variation1", "]"}], "<>", "\"\<2: \>\""}], 
+        ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "var12", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "variation1", "]"}]}], "]"}]}], "}"}], 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", "variation2", "]"}], "<>", "\"\<1: \>\""}], 
+        ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "var21", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "variation2", "]"}]}], "]"}], ",", 
+        "\"\<  \>\"", ",", 
+        RowBox[{
+         RowBox[{"ToString", "[", "variation2", "]"}], "<>", "\"\<2: \>\""}], 
+        ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "var22", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "variation2", "]"}]}], "]"}]}], "}"}], 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\"\<Error(\>\"", "<>", 
+         RowBox[{"ToString", "[", "variation1", "]"}], "<>", "\"\<1): \>\""}],
+         ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "err1", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "\"\<Errors\>\"", "]"}]}], "]"}], ",", 
+        "\"\<  \>\"", ",", 
+        RowBox[{"\"\<Error(\>\"", "<>", 
+         RowBox[{"ToString", "[", "variation1", "]"}], "<>", "\"\<2): \>\""}],
+         ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "err2", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "\"\<Errors\>\"", "]"}]}], "]"}]}], 
+       "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", "rest1", "]"}], "<>", "\"\<: \>\""}], ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "fix1", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "rest1", "]"}]}], "]"}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", "rest2", "]"}], "<>", "\"\<: \>\""}], ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "fix2", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "rest2", "]"}]}], "]"}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", "rest3", "]"}], "<>", "\"\<: \>\""}], ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "fix3", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "rest3", "]"}]}], "]"}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<xAxis: \>\"", ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "xAxis", "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\"\<hMax\>\"", ",", "\"\<RunTime\>\""}], "}"}]}], "]"}]}],
+        "}"}]}], "\[IndentingNewLine]", "}"}], ",", 
+    RowBox[{"Alignment", "\[Rule]", "Left"}]}], "]"}], "]"}], "\n", 
+ RowBox[{
+  RowBox[{"Dynamic", "[", 
+   RowBox[{"ListLogLogPlot", "[", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"GetPairs", "[", 
+        RowBox[{
+         RowBox[{"SelectData", "[", 
+          RowBox[{"Data", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"variation1", "\[Rule]", "var11"}], ",", 
+             RowBox[{"variation2", "\[Rule]", "var21"}], ",", 
+             RowBox[{"rest1", "\[Rule]", "fix1"}], ",", 
+             RowBox[{"rest2", "\[Rule]", "fix2"}], ",", 
+             RowBox[{"rest3", "\[Rule]", "fix3"}]}], "}"}]}], "]"}], ",", 
+         "xAxis", ",", "err1"}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"GetPairs", "[", 
+        RowBox[{
+         RowBox[{"SelectData", "[", 
+          RowBox[{"Data", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"variation1", "\[Rule]", "var12"}], ",", 
+             RowBox[{"variation2", "\[Rule]", "var21"}], ",", 
+             RowBox[{"rest1", "\[Rule]", "fix1"}], ",", 
+             RowBox[{"rest2", "\[Rule]", "fix2"}], ",", 
+             RowBox[{"rest3", "\[Rule]", "fix3"}]}], "}"}]}], "]"}], ",", 
+         "xAxis", ",", "err2"}], "]"}], ",", 
+       RowBox[{"GetPairs", "[", 
+        RowBox[{
+         RowBox[{"SelectData", "[", 
+          RowBox[{"Data", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"variation1", "\[Rule]", "var11"}], ",", 
+             RowBox[{"variation2", "\[Rule]", "var22"}], ",", 
+             RowBox[{"rest1", "\[Rule]", "fix1"}], ",", 
+             RowBox[{"rest2", "\[Rule]", "fix2"}], ",", 
+             RowBox[{"rest3", "\[Rule]", "fix3"}]}], "}"}]}], "]"}], ",", 
+         "xAxis", ",", "err1"}], "]"}], ",", 
+       RowBox[{"GetPairs", "[", 
+        RowBox[{
+         RowBox[{"SelectData", "[", 
+          RowBox[{"Data", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"variation1", "\[Rule]", "var12"}], ",", 
+             RowBox[{"variation2", "\[Rule]", "var22"}], ",", 
+             RowBox[{"rest1", "\[Rule]", "fix1"}], ",", 
+             RowBox[{"rest2", "\[Rule]", "fix2"}], ",", 
+             RowBox[{"rest3", "\[Rule]", "fix3"}]}], "}"}]}], "]"}], ",", 
+         "xAxis", ",", "err2"}], "]"}], ",", 
+       RowBox[{"ref1", "[", "xAxis", "]"}], ",", 
+       RowBox[{"ref2", "[", "xAxis", "]"}]}], "}"}], ",", 
+     RowBox[{"Joined", "\[Rule]", "True"}], ",", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Red", ",", "Thick"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Blue", ",", "Thick"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Green", ",", "Thick"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Cyan", ",", "Thick"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Gray", ",", "Thick"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Gray", ",", "Thick"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"range", "[", "xAxis", "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"0.1", " ", 
+           RowBox[{"10", "^", 
+            RowBox[{"-", "4"}]}]}], ",", "10.0"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"GridLines", "\[Rule]", "Automatic"}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\"\<max error\>\"", ",", "\"\<\>\""}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"xAxis", ",", 
+          RowBox[{"Grid", "[", 
+           RowBox[{
+            RowBox[{"{", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Red:\>\"", ",", "Red"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation1", ",", "\"\<=\>\"", ",", "var11"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation2", ",", "\"\<=\>\"", ",", "var21"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest1", ",", "\"\<=\>\"", ",", "fix1"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest2", ",", "\"\<=\>\"", ",", "fix2"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest3", ",", "\"\<=\>\"", ",", "fix3"}], "}"}], 
+                 "]"}], ",", "err1"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Blue:\>\"", ",", "Blue"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation1", ",", "\"\<=\>\"", ",", "var12"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation2", ",", "\"\<=\>\"", ",", "var21"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest1", ",", "\"\<=\>\"", ",", "fix1"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest2", ",", "\"\<=\>\"", ",", "fix2"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest3", ",", "\"\<=\>\"", ",", "fix3"}], "}"}], 
+                 "]"}], ",", "err2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Green:\>\"", ",", "Green"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation1", ",", "\"\<=\>\"", ",", "var11"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation2", ",", "\"\<=\>\"", ",", "var22"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest1", ",", "\"\<=\>\"", ",", "fix1"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest2", ",", "\"\<=\>\"", ",", "fix2"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest3", ",", "\"\<=\>\"", ",", "fix3"}], "}"}], 
+                 "]"}], ",", "err1"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Cyan:\>\"", ",", "Cyan"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation1", ",", "\"\<=\>\"", ",", "var12"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation2", ",", "\"\<=\>\"", ",", "var22"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest1", ",", "\"\<=\>\"", ",", "fix1"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest2", ",", "\"\<=\>\"", ",", "fix2"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest3", ",", "\"\<=\>\"", ",", "fix3"}], "}"}], 
+                 "]"}], ",", "err2"}], "}"}]}], "}"}], ",", 
+            RowBox[{"Alignment", "\[Rule]", "Left"}]}], "]"}]}], "}"}]}], 
+       "}"}]}], ",", 
+     RowBox[{"BaseStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Medium", ",", 
+        RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], "}"}]}], 
+     ",", 
+     RowBox[{"ImageSize", "\[Rule]", "900"}]}], "]"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["System B", "Section"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Data", "=", 
+   RowBox[{"ReadData", "[", "\"\<LogTwoCirclesLargeB.txt\>\"", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "Data", "]"}], "\[IndentingNewLine]"}], "Input"],
+
+Cell[BoxData["608"], "Output"]
+}, Open  ]],
+
+Cell["\<\
+System B:
+angular test case \[OpenCurlyDoubleQuote]B(angular/BCodd)\
+\[CloseCurlyDoubleQuote]
+nullspace-critical boundary condition is for tangential vector component - \
+only active in angular test case
+ -> kappa = 2 (L2-stable bc)
+ -> kappa = 0 (unstable bc)
+ 
+radial test case \[OpenCurlyDoubleQuote]B(radial/BCodd)\
+\[CloseCurlyDoubleQuote] 
+to test unstable boundary condition from System A
+  -> kappa = 0 (\[OpenCurlyDoubleQuote]standard\[CloseCurlyDoubleQuote] \
+System B bc - shows dissipative eigenvalues) 
+  -> kappa = -1 (uses L2-stable bc from System A)
+  
+Run times are not fully comparable, because cases were run with varying \
+available resources.\
+\>", "Text",
+ FontColor->RGBColor[0.5, 0, 0.5]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"options", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<MeshFile\>\"", ",", "\"\<System\>\"", ",", "\"\<kappa\>\"", ",", 
+     "\"\<order\>\"", ",", "\"\<tau\>\""}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Do", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"GetChoices", "[", "str", "]"}], "=", 
+     RowBox[{"Sort", "[", 
+      RowBox[{"DeleteDuplicates", "[", 
+       RowBox[{"GetData", "[", 
+        RowBox[{"Data", ",", "str"}], "]"}], "]"}], "]"}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"str", ",", "options"}], "}"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GetChoices", "[", "\"\<MeshFile\>\"", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<\\\\Structured\>\"", ",", "\"\<\\\\Quads\>\"", ",", 
+     "\"\<\\\\LargeH\>\""}], "}"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"variation1", "=", 
+   RowBox[{
+   "options", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"variation2", "=", 
+   RowBox[{
+   "options", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}]}], 
+  ";"}], "\n", 
+ RowBox[{"rest1", ":=", 
+  RowBox[{
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{"options", ",", 
+     RowBox[{"_", "?", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "\[Equal]", "variation1"}], "||", 
+         RowBox[{"#", "\[Equal]", "variation2"}]}], "&"}], ")"}]}]}], "]"}], 
+   "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], "\n", 
+ RowBox[{"rest2", ":=", 
+  RowBox[{
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{"options", ",", 
+     RowBox[{"_", "?", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "\[Equal]", "variation1"}], "||", 
+         RowBox[{"#", "\[Equal]", "variation2"}]}], "&"}], ")"}]}]}], "]"}], 
+   "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], "\n", 
+ RowBox[{"rest3", ":=", 
+  RowBox[{
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{"options", ",", 
+     RowBox[{"_", "?", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "\[Equal]", "variation1"}], "||", 
+         RowBox[{"#", "\[Equal]", "variation2"}]}], "&"}], ")"}]}]}], "]"}], 
+   "\[LeftDoubleBracket]", "3", 
+   "\[RightDoubleBracket]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"InitFix", ":=", 
+   RowBox[{"(", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"fix1", "=", 
+      RowBox[{
+       RowBox[{"GetChoices", "[", "rest1", "]"}], "\[LeftDoubleBracket]", "1",
+        "\[RightDoubleBracket]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"fix2", "=", 
+      RowBox[{
+       RowBox[{"GetChoices", "[", "rest2", "]"}], "\[LeftDoubleBracket]", "1",
+        "\[RightDoubleBracket]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"fix3", "=", 
+      RowBox[{
+       RowBox[{"GetChoices", "[", "rest3", "]"}], "\[LeftDoubleBracket]", "3",
+        "\[RightDoubleBracket]"}]}], ";"}], "\[IndentingNewLine]", ")"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"var11", "=", 
+   RowBox[{
+    RowBox[{"GetChoices", "[", "variation1", "]"}], "\[LeftDoubleBracket]", 
+    "2", "\[RightDoubleBracket]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"var12", "=", 
+   RowBox[{
+    RowBox[{"GetChoices", "[", "variation1", "]"}], "\[LeftDoubleBracket]", 
+    "2", "\[RightDoubleBracket]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"var21", "=", 
+   RowBox[{
+    RowBox[{"GetChoices", "[", "variation2", "]"}], "\[LeftDoubleBracket]", 
+    "1", "\[RightDoubleBracket]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"var22", "=", 
+   RowBox[{
+    RowBox[{"GetChoices", "[", "variation2", "]"}], "\[LeftDoubleBracket]", 
+    "2", "\[RightDoubleBracket]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"InitFix", ";"}], "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GetChoices", "[", "\"\<Errors\>\"", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<theta-Linf\>\"", ",", "\"\<sx-Linf\>\"", ",", "\"\<theta-L2\>\"", 
+     ",", "\"\<sx-L2\>\""}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"err1", "=", 
+   RowBox[{
+    RowBox[{"GetChoices", "[", "\"\<Errors\>\"", "]"}], 
+    "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"err2", "=", 
+   RowBox[{
+    RowBox[{"GetChoices", "[", "\"\<Errors\>\"", "]"}], 
+    "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xAxis", "=", "\"\<hMax\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"range", "[", "\"\<hMax\>\"", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"0.006", ",", "1.5"}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ref1", "[", "\"\<hMax\>\"", "]"}], "=", 
+   RowBox[{"ReferenceError", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0.5", ",", "0.5"}], "}"}], ",", "30", ",", "1", ",", "1"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ref2", "[", "\"\<hMax\>\"", "]"}], "=", 
+   RowBox[{"ReferenceError", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0.5", ",", "0.5"}], "}"}], ",", "30", ",", "1", ",", "2"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"range", "[", "\"\<RunTime\>\"", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"0.5", ",", "1000"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ref1", "[", "\"\<RunTime\>\"", "]"}], "=", 
+   RowBox[{"ReferenceError", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0.5", ",", "1.5"}], "}"}], ",", "100", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ref2", "[", "\"\<RunTime\>\"", "]"}], "=", 
+   RowBox[{"ReferenceError", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0.5", ",", "1.5"}], "}"}], ",", "100", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]"}], "Input"],
+
+Cell[BoxData[{
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"Grid", "[", 
+   RowBox[{
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<Variation1: \>\"", ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", 
+           RowBox[{"variation1", ",", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"variation1", "\[NotEqual]", "#"}], ",", 
+                RowBox[{
+                 RowBox[{"variation1", "=", "#"}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"var11", "=", 
+                  RowBox[{
+                   RowBox[{"GetChoices", "[", "variation1", "]"}], 
+                   "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+                 ";", "\[IndentingNewLine]", 
+                 RowBox[{"var12", "=", 
+                  RowBox[{
+                   RowBox[{"GetChoices", "[", "variation1", "]"}], 
+                   "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+                 ";", "\[IndentingNewLine]", "InitFix", ";"}]}], "]"}], ")"}],
+              "&"}]}], "]"}], ",", "options"}], "]"}], ",", "\"\<   \>\"", 
+        ",", "\[IndentingNewLine]", "\"\<Variation2: \>\"", ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", 
+           RowBox[{"variation2", ",", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"variation2", "\[NotEqual]", "#"}], ",", 
+                RowBox[{
+                 RowBox[{"variation2", "=", "#"}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"var21", "=", 
+                  RowBox[{
+                   RowBox[{"GetChoices", "[", "variation2", "]"}], 
+                   "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+                 ";", "\[IndentingNewLine]", 
+                 RowBox[{"var22", "=", 
+                  RowBox[{
+                   RowBox[{"GetChoices", "[", "variation2", "]"}], 
+                   "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+                 ";", "\[IndentingNewLine]", "InitFix", ";"}]}], "]"}], ")"}],
+              "&"}]}], "]"}], ",", "options"}], "]"}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", "variation1", "]"}], "<>", "\"\<1: \>\""}], 
+        ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "var11", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "variation1", "]"}]}], "]"}], ",", 
+        "\"\<  \>\"", ",", 
+        RowBox[{
+         RowBox[{"ToString", "[", "variation1", "]"}], "<>", "\"\<2: \>\""}], 
+        ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "var12", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "variation1", "]"}]}], "]"}]}], "}"}], 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", "variation2", "]"}], "<>", "\"\<1: \>\""}], 
+        ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "var21", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "variation2", "]"}]}], "]"}], ",", 
+        "\"\<  \>\"", ",", 
+        RowBox[{
+         RowBox[{"ToString", "[", "variation2", "]"}], "<>", "\"\<2: \>\""}], 
+        ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "var22", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "variation2", "]"}]}], "]"}]}], "}"}], 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\"\<Error(\>\"", "<>", 
+         RowBox[{"ToString", "[", "variation1", "]"}], "<>", "\"\<1): \>\""}],
+         ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "err1", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "\"\<Errors\>\"", "]"}]}], "]"}], ",", 
+        "\"\<  \>\"", ",", 
+        RowBox[{"\"\<Error(\>\"", "<>", 
+         RowBox[{"ToString", "[", "variation1", "]"}], "<>", "\"\<2): \>\""}],
+         ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "err2", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "\"\<Errors\>\"", "]"}]}], "]"}]}], 
+       "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", "rest1", "]"}], "<>", "\"\<: \>\""}], ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "fix1", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "rest1", "]"}]}], "]"}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", "rest2", "]"}], "<>", "\"\<: \>\""}], ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "fix2", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "rest2", "]"}]}], "]"}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", "rest3", "]"}], "<>", "\"\<: \>\""}], ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "fix3", "]"}], ",", 
+          RowBox[{"GetChoices", "[", "rest3", "]"}]}], "]"}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<xAxis: \>\"", ",", 
+        RowBox[{"PopupMenu", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "xAxis", "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\"\<hMax\>\"", ",", "\"\<RunTime\>\""}], "}"}]}], "]"}]}],
+        "}"}]}], "\[IndentingNewLine]", "}"}], ",", 
+    RowBox[{"Alignment", "\[Rule]", "Left"}]}], "]"}], "]"}], "\n", 
+ RowBox[{
+  RowBox[{"Dynamic", "[", 
+   RowBox[{"ListLogLogPlot", "[", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"GetPairs", "[", 
+        RowBox[{
+         RowBox[{"SelectData", "[", 
+          RowBox[{"Data", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"variation1", "\[Rule]", "var11"}], ",", 
+             RowBox[{"variation2", "\[Rule]", "var21"}], ",", 
+             RowBox[{"rest1", "\[Rule]", "fix1"}], ",", 
+             RowBox[{"rest2", "\[Rule]", "fix2"}], ",", 
+             RowBox[{"rest3", "\[Rule]", "fix3"}]}], "}"}]}], "]"}], ",", 
+         "xAxis", ",", "err1"}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"GetPairs", "[", 
+        RowBox[{
+         RowBox[{"SelectData", "[", 
+          RowBox[{"Data", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"variation1", "\[Rule]", "var12"}], ",", 
+             RowBox[{"variation2", "\[Rule]", "var21"}], ",", 
+             RowBox[{"rest1", "\[Rule]", "fix1"}], ",", 
+             RowBox[{"rest2", "\[Rule]", "fix2"}], ",", 
+             RowBox[{"rest3", "\[Rule]", "fix3"}]}], "}"}]}], "]"}], ",", 
+         "xAxis", ",", "err2"}], "]"}], ",", 
+       RowBox[{"GetPairs", "[", 
+        RowBox[{
+         RowBox[{"SelectData", "[", 
+          RowBox[{"Data", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"variation1", "\[Rule]", "var11"}], ",", 
+             RowBox[{"variation2", "\[Rule]", "var22"}], ",", 
+             RowBox[{"rest1", "\[Rule]", "fix1"}], ",", 
+             RowBox[{"rest2", "\[Rule]", "fix2"}], ",", 
+             RowBox[{"rest3", "\[Rule]", "fix3"}]}], "}"}]}], "]"}], ",", 
+         "xAxis", ",", "err1"}], "]"}], ",", 
+       RowBox[{"GetPairs", "[", 
+        RowBox[{
+         RowBox[{"SelectData", "[", 
+          RowBox[{"Data", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"variation1", "\[Rule]", "var12"}], ",", 
+             RowBox[{"variation2", "\[Rule]", "var22"}], ",", 
+             RowBox[{"rest1", "\[Rule]", "fix1"}], ",", 
+             RowBox[{"rest2", "\[Rule]", "fix2"}], ",", 
+             RowBox[{"rest3", "\[Rule]", "fix3"}]}], "}"}]}], "]"}], ",", 
+         "xAxis", ",", "err2"}], "]"}], ",", 
+       RowBox[{"ref1", "[", "xAxis", "]"}], ",", 
+       RowBox[{"ref2", "[", "xAxis", "]"}]}], "}"}], ",", 
+     RowBox[{"Joined", "\[Rule]", "True"}], ",", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Red", ",", "Thick"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Blue", ",", "Thick"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Green", ",", "Thick"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Cyan", ",", "Thick"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Gray", ",", "Thick"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Gray", ",", "Thick"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"range", "[", "xAxis", "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"0.1", " ", 
+           RowBox[{"10", "^", 
+            RowBox[{"-", "4"}]}]}], ",", "10.0"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"GridLines", "\[Rule]", "Automatic"}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\"\<max error\>\"", ",", "\"\<\>\""}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"xAxis", ",", 
+          RowBox[{"Grid", "[", 
+           RowBox[{
+            RowBox[{"{", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Red:\>\"", ",", "Red"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation1", ",", "\"\<=\>\"", ",", "var11"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation2", ",", "\"\<=\>\"", ",", "var21"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest1", ",", "\"\<=\>\"", ",", "fix1"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest2", ",", "\"\<=\>\"", ",", "fix2"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest3", ",", "\"\<=\>\"", ",", "fix3"}], "}"}], 
+                 "]"}], ",", "err1"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Blue:\>\"", ",", "Blue"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation1", ",", "\"\<=\>\"", ",", "var12"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation2", ",", "\"\<=\>\"", ",", "var21"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest1", ",", "\"\<=\>\"", ",", "fix1"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest2", ",", "\"\<=\>\"", ",", "fix2"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest3", ",", "\"\<=\>\"", ",", "fix3"}], "}"}], 
+                 "]"}], ",", "err2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Green:\>\"", ",", "Green"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation1", ",", "\"\<=\>\"", ",", "var11"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation2", ",", "\"\<=\>\"", ",", "var22"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest1", ",", "\"\<=\>\"", ",", "fix1"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest2", ",", "\"\<=\>\"", ",", "fix2"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest3", ",", "\"\<=\>\"", ",", "fix3"}], "}"}], 
+                 "]"}], ",", "err1"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Cyan:\>\"", ",", "Cyan"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation1", ",", "\"\<=\>\"", ",", "var12"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"variation2", ",", "\"\<=\>\"", ",", "var22"}], 
+                  "}"}], "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest1", ",", "\"\<=\>\"", ",", "fix1"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest2", ",", "\"\<=\>\"", ",", "fix2"}], "}"}], 
+                 "]"}], ",", 
+                RowBox[{"stringJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"rest3", ",", "\"\<=\>\"", ",", "fix3"}], "}"}], 
+                 "]"}], ",", "err2"}], "}"}]}], "}"}], ",", 
+            RowBox[{"Alignment", "\[Rule]", "Left"}]}], "]"}]}], "}"}]}], 
+       "}"}]}], ",", 
+     RowBox[{"BaseStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Medium", ",", 
+        RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], "}"}]}], 
+     ",", 
+     RowBox[{"ImageSize", "\[Rule]", "900"}]}], "]"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Flow (NSF + R13)", "Section"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Data", "=", 
+   RowBox[{"ReadData", "[", "\"\<LogTwoCirclesLargeFlow.txt\>\"", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "Data", "]"}], "\[IndentingNewLine]"}], "Input"],
+
+Cell[BoxData["76"], "Output"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"options", "=", 
+   RowBox[{"{", 
+    RowBox[{"\"\<System\>\"", ",", "\"\<order\>\"", ",", "\"\<tau\>\""}], 
+    "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"GetChoices", "[", "str", "]"}], "=", 
+      RowBox[{"Sort", "[", 
+       RowBox[{"DeleteDuplicates", "[", 
+        RowBox[{"GetData", "[", 
+         RowBox[{"Data", ",", "str"}], "]"}], "]"}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"str", ",", "options"}], "}"}]}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"GetChoices", "[", "\"\<MeshFile\>\"", "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+   "\"\<\\\\Structured\>\"", ",", "\"\<\\\\Quads\>\"", ",", 
+    "\"\<\\\\LargeH\>\""}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GetChoices", "[", "\"\<Errors\>\"", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"\"\<Linf\>\"", ",", "\"\<L2\>\""}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"errors", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<theta-Linf\>\"", ",", "\"\<sx-Linf\>\"", ",", "\"\<ux-Linf\>\"", 
+        ",", "\"\<sigxy-Linf\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<theta-L2\>\"", ",", "\"\<sx-L2\>\"", ",", "\"\<ux-L2\>\"", ",", 
+        "\"\<sigxy-L2\>\""}], "}"}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xAxis", "=", "\"\<hMax\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"range", "[", "\"\<hMax\>\"", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"0.006", ",", "1.5"}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ref1", "[", "\"\<hMax\>\"", "]"}], "=", 
+   RowBox[{"ReferenceError", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0.5", ",", "0.5"}], "}"}], ",", "30", ",", "1", ",", "1"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ref2", "[", "\"\<hMax\>\"", "]"}], "=", 
+   RowBox[{"ReferenceError", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0.5", ",", "0.5"}], "}"}], ",", "30", ",", "1", ",", "2"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"range", "[", "\"\<RunTime\>\"", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"0.1", ",", "2000"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ref1", "[", "\"\<RunTime\>\"", "]"}], "=", 
+   RowBox[{"ReferenceError", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0.5", ",", "1.5"}], "}"}], ",", "100", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ref2", "[", "\"\<RunTime\>\"", "]"}], "=", 
+    RowBox[{"ReferenceError", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0.5", ",", "1.5"}], "}"}], ",", "100", ",", 
+      RowBox[{"-", "1"}], ",", "1"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"order1", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"system1", "=", "\"\<NSF(heat+flow/BCodd)\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mesh1", "=", "\"\<\\\\LargeH\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tau1", "=", "0.1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"error1", "=", "\"\<Linf\>\""}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"order2", "=", "2"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"system2", "=", "\"\<NSF(heat+flow/BCodd)\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mesh2", "=", "\"\<\\\\Structured\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tau2", "=", "0.1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"error2", "=", "\"\<Linf\>\""}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"Grid", "[", 
+   RowBox[{
+    RowBox[{"Transpose", "[", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<\>\"", ",", "\"\<solid lines: \>\"", ",", "\"\<  \>\"", ",", 
+         "\"\<dashed lines:\>\""}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\< System \>\"", ",", 
+         RowBox[{"PopupMenu", "[", 
+          RowBox[{
+           RowBox[{"Dynamic", "[", "system1", "]"}], ",", 
+           RowBox[{"GetChoices", "[", "\"\<System\>\"", "]"}]}], "]"}], ",", 
+         "\"\<\>\"", ",", "\[IndentingNewLine]", 
+         RowBox[{"PopupMenu", "[", 
+          RowBox[{
+           RowBox[{"Dynamic", "[", "system2", "]"}], ",", 
+           RowBox[{"GetChoices", "[", "\"\<System\>\"", "]"}]}], "]"}]}], 
+        "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\< Error \>\"", ",", 
+         RowBox[{"PopupMenu", "[", 
+          RowBox[{
+           RowBox[{"Dynamic", "[", "error1", "]"}], ",", 
+           RowBox[{"GetChoices", "[", "\"\<Errors\>\"", "]"}]}], "]"}], ",", 
+         "\"\<\>\"", ",", "\[IndentingNewLine]", 
+         RowBox[{"PopupMenu", "[", 
+          RowBox[{
+           RowBox[{"Dynamic", "[", "error2", "]"}], ",", 
+           RowBox[{"GetChoices", "[", "\"\<Errors\>\"", "]"}]}], "]"}]}], 
+        "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\< MeshFile \>\"", ",", 
+         RowBox[{"PopupMenu", "[", 
+          RowBox[{
+           RowBox[{"Dynamic", "[", "mesh1", "]"}], ",", 
+           RowBox[{"GetChoices", "[", "\"\<MeshFile\>\"", "]"}]}], "]"}], 
+         ",", "\"\<\>\"", ",", "\[IndentingNewLine]", 
+         RowBox[{"PopupMenu", "[", 
+          RowBox[{
+           RowBox[{"Dynamic", "[", "mesh2", "]"}], ",", 
+           RowBox[{"GetChoices", "[", "\"\<MeshFile\>\"", "]"}]}], "]"}]}], 
+        "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\< tau \>\"", ",", 
+         RowBox[{"PopupMenu", "[", 
+          RowBox[{
+           RowBox[{"Dynamic", "[", "tau1", "]"}], ",", 
+           RowBox[{"GetChoices", "[", "\"\<tau\>\"", "]"}]}], "]"}], ",", 
+         "\"\<\>\"", ",", "\[IndentingNewLine]", 
+         RowBox[{"PopupMenu", "[", 
+          RowBox[{
+           RowBox[{"Dynamic", "[", "tau2", "]"}], ",", 
+           RowBox[{"GetChoices", "[", "\"\<tau\>\"", "]"}]}], "]"}]}], "}"}], 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\< order \>\"", ",", 
+         RowBox[{"PopupMenu", "[", 
+          RowBox[{
+           RowBox[{"Dynamic", "[", "order1", "]"}], ",", 
+           RowBox[{"GetChoices", "[", "\"\<order\>\"", "]"}]}], "]"}], ",", 
+         "\"\<\>\"", ",", "\[IndentingNewLine]", 
+         RowBox[{"PopupMenu", "[", 
+          RowBox[{
+           RowBox[{"Dynamic", "[", "order2", "]"}], ",", 
+           RowBox[{"GetChoices", "[", "\"\<order\>\"", "]"}]}], "]"}]}], 
+        "}"}]}], "\[IndentingNewLine]", "}"}], "]"}], ",", 
+    RowBox[{"Alignment", "\[Rule]", "Center"}]}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Dynamic", "[", "\[IndentingNewLine]", 
+  RowBox[{"ListLogLogPlot", "[", 
+   RowBox[{
+    RowBox[{"Join", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"GetPairs", "[", 
+          RowBox[{
+           RowBox[{"SelectData", "[", 
+            RowBox[{"Data", ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"\"\<System\>\"", "\[Rule]", "system1"}], ",", 
+               RowBox[{"\"\<tau\>\"", "\[Rule]", "tau1"}], ",", 
+               RowBox[{"\"\<order\>\"", "\[Rule]", "order1"}], ",", 
+               RowBox[{"\"\<MeshFile\>\"", "\[Rule]", "mesh1"}]}], "}"}]}], 
+            "]"}], ",", "xAxis", ",", "#"}], "]"}], "&"}], ",", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"error1", "\[Equal]", "\"\<Linf\>\""}], ",", 
+          RowBox[{
+          "errors", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+          ",", 
+          RowBox[{
+          "errors", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+         "]"}]}], "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"GetPairs", "[", 
+          RowBox[{
+           RowBox[{"SelectData", "[", 
+            RowBox[{"Data", ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"\"\<System\>\"", "\[Rule]", "system2"}], ",", 
+               RowBox[{"\"\<tau\>\"", "\[Rule]", "tau2"}], ",", 
+               RowBox[{"\"\<order\>\"", "\[Rule]", "order2"}], ",", 
+               RowBox[{"\"\<MeshFile\>\"", "\[Rule]", "mesh2"}]}], "}"}]}], 
+            "]"}], ",", "xAxis", ",", "#"}], "]"}], "&"}], ",", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"error2", "\[Equal]", "\"\<Linf\>\""}], ",", 
+          RowBox[{
+          "errors", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+          ",", 
+          RowBox[{
+          "errors", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+         "]"}]}], "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"ref2", "[", "xAxis", "]"}], "}"}]}], "]"}], ",", 
+    RowBox[{"Joined", "\[Rule]", "True"}], ",", 
+    RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"Red", ",", "Thick"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Blue", ",", "Thick"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Green", ",", "Thick"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Cyan", ",", "Thick"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Red", ",", "Dashed"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Blue", ",", "Dashed"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Green", ",", "Dashed"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Cyan", ",", "Dashed"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Gray", ",", "Thick"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Gray", ",", "Thick"}], "}"}]}], "}"}]}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"range", "[", "xAxis", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"0.1", " ", 
+          RowBox[{"10", "^", 
+           RowBox[{"-", "4"}]}]}], ",", "10.0"}], "}"}]}], "}"}]}], ",", 
+    RowBox[{"GridLines", "\[Rule]", "Automatic"}], ",", 
+    RowBox[{"FrameLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"\"\<relative max error\>\"", ",", "\"\<\>\""}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"xAxis", ",", "\"\<two circles large\>\""}], "}"}]}], "}"}]}],
+     ",", 
+    RowBox[{"BaseStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"Medium", ",", 
+       RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], "}"}]}], ",", 
+    RowBox[{"ImageSize", "\[Rule]", "900"}]}], "]"}], "\[IndentingNewLine]", 
+  "]"}]}], "Input"]
+}, Closed]]
+},
+EvaluatorNames->{
+ "Local" -> {"AutoStartOnLaunch" -> True}, 
+  "K2" -> {"AutoStartOnLaunch" -> False}},
+NotebookAutoSave->False,
+ClosingAutoSave->False,
+ClosingSaveDialog->True,
+CloseOnClickOutside->False,
+IncludeFileExtension->True,
+FileChangeProtection->Automatic,
+TransitionEffect->Automatic,
+TransitionDirection->Horizontal,
+TransitionDuration->Short,
+RasterExploreViewRange->17,
+MarkerLineThickness->1.,
+MarkerAspectRatio->0.,
+AutoGeneratedPackage->None,
+Editable->True,
+Saveable->True,
+StyleEnvironment->Automatic,
+ScreenStyleEnvironment->"Working",
+PrintingStyleEnvironment->"Printout",
+ShowPageBreaks->False,
+WindowToolbars->{},
+RulerUnits->"Inches",
+BlinkingCellInsertionPoint->True,
+CellInsertionPointColor->GrayLevel[0.7500114442664225],
+CellInsertionPointCell->FEPrivate`FrontEndResource[
+ "FEExpressions", "CellInsertionMenu"],
+Evaluator->"Local",
+EvaluationCompletionAction->{},
+PrintAction->"PrintToNotebook",
+OutputAutoOverwrite->True,
+InitializationCellEvaluation->Automatic,
+InitializationCellWarning->True,
+NotebookEventActions->None,
+NotebookDynamicExpression:>Null,
+Selectable->True,
+Clickable->True,
+Deletable->True,
+CellGrouping->Automatic,
+PageWidth->WindowWidth,
+WindowSize->{1405, 952},
+WindowMargins->{{Automatic, 40}, {Automatic, 9}},
+WindowFrame->"Normal",
+WindowElements->{
+ "StatusArea", "MemoryMonitor", "MagnificationPopUp", "HorizontalScrollBar", 
+  "VerticalScrollBar", "MenuBar"},
+WindowFrameElements->{
+ "CloseBox", "ZoomBox", "MinimizeBox", "ToolbarBox", "DocumentIcon", 
+  "ResizeArea"},
+WindowFloating->Automatic,
+WindowClickSelect->True,
+WindowMovable->True,
+WindowPersistentStyles->{
+ WindowFrame, WindowMargins, WindowSize, DockedCells, Magnification},
+BackgroundAppearance->None,
+BackgroundAppearanceOptions->"Fill",
+WindowTitle->Automatic,
+WindowStatusArea->Automatic,
+WindowOpacity->1.,
+Visible->True,
+DockedCells->{},
+PrintingCopies->1,
+PrintingStartingPageNumber->1,
+PrintingPageRange->{Automatic, Automatic},
+PageHeaders->{{
+   Cell[
+    TextData[{
+      Cell[
+       TextData[{
+         CounterBox["Page"]}], "PageNumber"], "   ", 
+      Cell[
+      " ", "Header", CellFrame -> {{0.5, 0}, {0, 0}}, CellFrameMargins -> 4], 
+      Cell[
+       TextData[{
+         ValueBox["FileName"]}], "Header"]}], 
+    CellMargins -> {{0, Inherited}, {Inherited, Inherited}}], None, None}, {
+  None, None, 
+   Cell[
+    TextData[{
+      Cell[
+       TextData[{
+         ValueBox["FileName"]}], "Header"], 
+      Cell[
+      " ", "Header", CellFrame -> {{0, 0.5}, {0, 0}}, CellFrameMargins -> 4], 
+      "   ", 
+      Cell[
+       TextData[{
+         CounterBox["Page"]}], "PageNumber"]}], 
+    CellMargins -> {{Inherited, 0}, {Inherited, Inherited}}]}},
+PageFooters->{{None, None, None}, {None, None, None}},
+PageHeaderLines->{False, False},
+PageFooterLines->{False, False},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+Magnification->1.,
+Background->None,
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb",
+GhostCellInEmptyNotebook -> False
+]
+

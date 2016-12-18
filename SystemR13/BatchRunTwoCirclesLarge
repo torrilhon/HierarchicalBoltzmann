@@ -1,0 +1,43 @@
+#!/bin/sh
+logfile="../output/LogFileFlow.txt"
+./SystemR13.out ../grids/TwoCirclesLargeStructuredH0p4.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeStructuredH0p2.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeStructuredH0p1.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeStructuredH0p05.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeStructuredH0p4.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeStructuredH0p2.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeStructuredH0p1.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeStructuredH0p05.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeH0p8.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeH0p4.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeH0p2.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeH0p1.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeH0p05.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeH0p8.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeH0p4.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeH0p2.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeH0p1.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeH0p05.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeGmshQuadsH0p4.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeGmshQuadsH0p2.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeGmshQuadsH0p1.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeGmshQuadsH0p05.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeGmshQuadsH0p4.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeGmshQuadsH0p2.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeGmshQuadsH0p1.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeGmshQuadsH0p05.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeGmshQuadsH0p03.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeGmshQuadsH0p03.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeH0p03.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeH0p03.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeStructuredH0p03.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeStructuredH0p03.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeH0p01.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeGmshQuadsH0p01.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeStructuredH0p01.msh -tau 1.0 -order 1 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeStructuredH0p01.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeH0p01.msh -tau 1.0 -order 2 -mfile $logfile
+./SystemR13.out ../grids/TwoCirclesLargeGmshQuadsH0p01.msh -tau 1.0 -order 2 -mfile $logfile
+
+
+

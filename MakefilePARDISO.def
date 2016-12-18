@@ -1,0 +1,37 @@
+###############################################################################
+### Defines directories and specifics for original Pardiso-solver 
+###############################################################################
+
+### Change this to your directory
+
+HOMEDIR = /path/to/HierarchicalBoltzmann
+BASEDIR = /path/to/external/libraries
+
+ODIR = $(HOMEDIR)/obj
+SDIR = $(HOMEDIR)/src
+IDIR = $(HOMEDIR)/include
+
+### Set directories for Eigen, Boost and MOAB 
+
+EIGEN_INCLUDE = $(BASEDIR)/eigen-3.2.10
+BOOST_INCLUDE = $(BASEDIR)/boost_1_57_0
+MOAB_BASE_DIR = $(BASEDIR)/moab-4.9.1
+PARDISO_BASE_DIR = $(BASEDIR)/pardiso-5.0.0
+
+MOAB_INCLUDES = $(MOAB_BASE_DIR)/include
+MOAB_LIBS_LINK = -L$(MOAB_BASE_DIR)/lib -lMOAB
+PARDISO_LIBS_LINK = -L$(PARDISO_BASE_DIR) -lpardiso500-MACOS-X86-64 -lgfortran -fopenmp -llapack -lblas -lpthread
+
+CFLAGS  = -I. -I$(IDIR) -I$(EIGEN_INCLUDE) -I$(MOAB_INCLUDES) -I$(BOOST_INCLUDE) -Wno-format -DPARDISO -DEIGEN_NO_DEBUG
+LDLIBS  = -lm $(MOAB_LIBS_LINK) $(PARDISO_LIBS_LINK)
+CC      = g++-6.1.0 -O2
+
+### general source files
+
+SRC_ALL = main.cpp \
+          EigenSetup.cpp \
+          Mesh.cpp \
+          Numerics.cpp \
+          ElementAssembly.cpp \
+          Tools.cpp \
+          pardisoSolvePARDISO.cpp 

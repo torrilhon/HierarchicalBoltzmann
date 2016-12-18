@@ -1,0 +1,6 @@
+ [11-11-2016_10-25-45], RunTime = 37.52
+System = Gxy(heat+flow/BCodd), nMoments = 35, nEqn = 22, tau = 0.500, chi = 1.000, theta0 = 1.000, theta1 = 1.000, v0 = 1.000, p0 = 1.000, eps = 1.00e-05
+MeshFile = '../grids/complexH0p04.msh', type = 3, hMax = 0.151898, nElems = 2143, nVerts = 1185
+Method = DG, order = 2, nBasis = 6, nTot = 282876, nnz = 40586605, nnzRatio = 143.48, res = 1.68e-09, nIter = 5
+ResultFile = '../output/result[12-11-2016_14-48-15].dat.ref'
+************
