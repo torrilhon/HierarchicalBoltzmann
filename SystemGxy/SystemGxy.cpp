@@ -34,7 +34,7 @@ System::System( int argc, const char **argv )
   nMoments = 20;
   if(exists_arg(argc,argv,"-moments")) nMoments = (int)get_float_arg(argc,argv,"-moments");
   
-  outputFlag = 0;
+  outputFlag = 1;
   if(exists_arg(argc,argv,"-output")) outputFlag = (int)get_float_arg(argc,argv,"-output");  
 
   SystemText = "Gxy(heat+flow/BCodd)";
